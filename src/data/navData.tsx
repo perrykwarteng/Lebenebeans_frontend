@@ -1,6 +1,6 @@
 import { IoHome } from "react-icons/io5";
 import { CgMenuBoxed } from "react-icons/cg";
-import { FiShoppingCart } from "react-icons/fi";
+// import { FiShoppingCart } from "react-icons/fi";
 
 export const navData = [
   {
@@ -13,9 +13,9 @@ export const navData = [
     navText: "Menu",
     navIcon: <CgMenuBoxed />,
   },
-  {
-    navLink: "/orders",
-    navText: "Orders",
-    navIcon: <FiShoppingCart />,
-  },
+  // {
+  //   navLink: "/orders",
+  //   navText: "Orders",
+  //   navIcon: <FiShoppingCart />,
+  // },
 ];
