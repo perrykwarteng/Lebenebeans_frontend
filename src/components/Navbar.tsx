@@ -62,7 +62,7 @@ export const Navbar = () => {
         </div>
       </motion.div>
 
-      <div className="fixed md:hidden bottom-10 right-8 left-8 bg-white rounded-2xl flex items-center justify-center shadow py-3 z-30">
+      <div className="fixed md:hidden bottom-10 right-8 left-8 bg-secondary rounded-2xl flex items-center justify-center shadow py-3 z-30">
         <ul className="flex items-center gap-x-4">
           {nav.map((navItem) => (
             <Link
@@ -74,7 +74,7 @@ export const Navbar = () => {
                 section?.scrollIntoView({ behavior: "smooth" });
               }}
             >
-              <li className="text-secondary hover:underline hover:text-primary flex items-center gap-x-2">
+              <li className="text-white hover:underline hover:text-primary flex items-center gap-x-2">
                 {navItem.navIcon}
                 {navItem.navText}
               </li>
