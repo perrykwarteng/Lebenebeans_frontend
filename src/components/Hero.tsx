@@ -13,7 +13,7 @@ export const Hero = () => {
           transition={{ duration: 0.8 }}
         >
           <div className="">
-            <p className="text-gray-600 text-[20px] italic">
+            <p className="text-gray-600 text-[20px] italic mt-2.5">
               Welcome to Lebenebeans
             </p>
             <h2 className="text-[45px] md:text-[55px] mt-4 font-semibold leading-12 md:leading-16">
@@ -38,13 +38,6 @@ export const Hero = () => {
                 }}
               >
                 <Button text="Check Menu" type="Submit" />
-              </div>
-              <div className="action">
-                <Button
-                  text="Order Here"
-                  type="Submit"
-                  Stlye="bg-secondary hover:bg-primary hover:text-secondary px-5 py-2 text-center rounded-xl text-white"
-                />
               </div>
             </div>
           </div>
