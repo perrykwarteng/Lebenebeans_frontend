@@ -6,10 +6,14 @@ export const Footer = () => {
   return (
     <footer className="bg-primary text-white mt-10">
       <div className="w-full md:px-5 py-2 flex flex-col justify-center md:flex-row items-center md:justify-between  gap-4">
-        <Link className="flex items-center gap-x-2" to="/">
-          <img className="w-12" src={Logo} alt="Main Logo" />
-          <h1 className="text-primary text-[22px] font-medium">Lebenebeans</h1>
-        </Link>
+        <div className="">
+          <Link className="flex items-center justify-center gap-x-2" to="/">
+            <img className="w-12" src={Logo} alt="Main Logo" />
+            <h1 className="text-white text-[22px] font-medium">
+              Lebenebeans
+            </h1>
+          </Link>
+        </div>
 
         <div className="text-center text-white py-1.5">
           &copy; {new Date().getFullYear()} Lebenebeans, All Rights Reserved
