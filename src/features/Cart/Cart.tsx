@@ -69,9 +69,7 @@ export const Cart = () => {
       !name ||
       !number ||
       !item ||
-      !location ||
       !deliveryType ||
-      !deliveryFee ||
       !totalFoodPrice ||
       !totalPrice
     ) {
@@ -217,15 +215,18 @@ export const Cart = () => {
                 </div>
               </div>
 
-              <div className="my-1.5">
-                <p className="mb-1 text-secondary md:text-[16px]">Location</p>
-                <Select
-                  value={location}
-                  options={locationArr}
-                  label={"Select Location"}
-                  handleSelect={setLocation}
-                />
-              </div>
+              {deliveryType === "Pick Up" ? null : (
+                <div className="my-1.5">
+                  <p className="mb-1 text-secondary md:text-[16px]">Location</p>
+                  <Select
+                    value={location}
+                    options={locationArr}
+                    label={"Select Location"}
+                    handleSelect={setLocation}
+                  />
+                </div>
+              )}
+
               <div className="my-1.5">
                 <label
                   htmlFor="location"
