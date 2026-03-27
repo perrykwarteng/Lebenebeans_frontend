@@ -1,0 +1,446 @@
+export const Location = [
+  {
+    name: "Abelemkpe",
+    price: 20,
+  },
+  {
+    name: "Ablekuma",
+    price: 50,
+  },
+  {
+    name: "Abofu",
+    price: 30,
+  },
+  {
+    name: "Abokobi",
+    price: 40,
+  },
+  {
+    name: "Abossey Okai",
+    price: 30,
+  },
+  {
+    name: "Accra Mall",
+    price: 40,
+  },
+  {
+    name: "Accra Metropolitan",
+    price: 40,
+  },
+  {
+    name: "Accra New Town",
+    price: 15,
+  },
+  {
+    name: "Achimota",
+    price: 30,
+  },
+  {
+    name: "Action Chapel",
+    price: 45,
+  },
+  {
+    name: "Adabraka",
+    price: 30,
+  },
+  {
+    name: "Adenta",
+    price: 60,
+  },
+  {
+    name: "Adenta Frafra Ha",
+    price: 60,
+  },
+  {
+    name: "Adjiriganor",
+    price: 60,
+  },
+  {
+    name: "Agbogba",
+    price: 60,
+  },
+  {
+    name: "Agbogbloshie",
+    price: 40,
+  },
+  {
+    name: "Airport Residential Area",
+    price: 35,
+  },
+  {
+    name: "Akweteyman",
+    price: 30,
+  },
+  {
+    name: "Alajo",
+    price: 15,
+  },
+  {
+    name: "Amassaman",
+    price: 60,
+  },
+  {
+    name: "Anyaa",
+    price: 35,
+  },
+  {
+    name: "Apenkwa",
+    price: 30,
+  },
+  {
+    name: "Ashaiman Municipal",
+    price: 45,
+  },
+  {
+    name: "Ashaley Botwe",
+    price: 50,
+  },
+  {
+    name: "Ashomang Estate",
+    price: 45,
+  },
+  {
+    name: "Asylum Down",
+    price: 35,
+  },
+  {
+    name: "Atomic",
+    price: 35,
+  },
+  {
+    name: "Avenor Area",
+    price: 25,
+  },
+  {
+    name: "Awoshie",
+    price: 35,
+  },
+  {
+    name: "Awudome",
+    price: 25,
+  },
+  {
+    name: "Banana Inn",
+    price: 30,
+  },
+  {
+    name: "Bubuashie",
+    price: 30,
+  },
+  {
+    name: "Burma Camp",
+    price: 35,
+  },
+  {
+    name: "Cantonments",
+    price: 35,
+  },
+  {
+    name: "Central Business District",
+    price: 30,
+  },
+  {
+    name: "Chorkor",
+    price: 30,
+  },
+  {
+    name: "Circle",
+    price: 20,
+  },
+  {
+    name: "Dansoman",
+    price: 60,
+  },
+  {
+    name: "Darkuman",
+    price: 30,
+  },
+  {
+    name: "Dome",
+    price: 50,
+  },
+  {
+    name: "Dzorwulu",
+    price: 30,
+  },
+  {
+    name: "East Legon",
+    price: 50,
+  },
+  {
+    name: "East Legon Hills",
+    price: 70,
+  },
+  {
+    name: "Gbawe",
+    price: 45,
+  },
+  {
+    name: "Haatso",
+    price: 60,
+  },
+  {
+    name: "James Town",
+    price: 30,
+  },
+  {
+    name: "Kaneshie",
+    price: 25,
+  },
+  {
+    name: "Kokomlemle",
+    price: 20,
+  },
+  {
+    name: "Korle Bu",
+    price: 30,
+  },
+  {
+    name: "Korle Gonno",
+    price: 30,
+  },
+  {
+    name: "Kotobabi",
+    price: 15,
+  },
+  {
+    name: "Kwabenya",
+    price: 60,
+  },
+  {
+    name: "Kwashieman",
+    price: 30,
+  },
+  {
+    name: "Labadi",
+    price: 40,
+  },
+  {
+    name: "Labone",
+    price: 30,
+  },
+  {
+    name: "Lapaz",
+    price: 45,
+  },
+  {
+    name: "Lartebiokorshie",
+    price: 30,
+  },
+  {
+    name: "Lashibi",
+    price: 65,
+  },
+  {
+    name: "Laterbiokoshie",
+    price: 30,
+  },
+  {
+    name: "Ledzokuku-Krowor",
+    price: 35,
+  },
+  {
+    name: "Madina",
+    price: 50,
+  },
+  {
+    name: "Mamobi",
+    price: 15,
+  },
+  {
+    name: "Mamprobi",
+    price: 30,
+  },
+  {
+    name: "Mataheko",
+    price: 30,
+  },
+  {
+    name: "McCarthy Hills",
+    price: 60,
+  },
+  {
+    name: "New Mamprobi",
+    price: 30,
+  },
+  {
+    name: "Nii Boi Town",
+    price: 25,
+  },
+  {
+    name: "Nima",
+    price: 30,
+  },
+  {
+    name: "North Industrial Area",
+    price: 25,
+  },
+  {
+    name: "North Kaneshie",
+    price: 30,
+  },
+  {
+    name: "North Ridge",
+    price: 30,
+  },
+  {
+    name: "Nungua",
+    price: 45,
+  },
+  {
+    name: "Odorkor",
+    price: 30,
+  },
+  {
+    name: "Ofankor",
+    price: 50,
+  },
+  {
+    name: "Ogbodjo",
+    price: 60,
+  },
+  {
+    name: "Okaishie",
+    price: 30,
+  },
+  {
+    name: "Okponglo",
+    price: 30,
+  },
+  {
+    name: "Old Ashomang",
+    price: 35,
+  },
+  {
+    name: "Osu",
+    price: 30,
+  },
+  {
+    name: "Oyarifa",
+    price: 65,
+  },
+  {
+    name: "Oyibi",
+    price: 45,
+  },
+  {
+    name: "palace mall(spintex)",
+    price: 45,
+  },
+  {
+    name: "Pantang",
+    price: 70,
+  },
+  {
+    name: "Pigfarm",
+    price: 10,
+  },
+  {
+    name: "Pokuase",
+    price: 60,
+  },
+  {
+    name: "Roman Ridge",
+    price: 35,
+  },
+  {
+    name: "Sakumono",
+    price: 65,
+  },
+  {
+    name: "Santa Maria",
+    price: 35,
+  },
+  {
+    name: "Sempe New Town",
+    price: 30,
+  },
+  {
+    name: "South La",
+    price: 30,
+  },
+  {
+    name: "South Shiashie",
+    price: 40,
+  },
+  {
+    name: "Sowutwuom",
+    price: 55,
+  },
+  {
+    name: "Spintex",
+    price: 65,
+  },
+  {
+    name: "SSNIT Flats",
+    price: 35,
+  },
+  {
+    name: "Sukura",
+    price: 30,
+  },
+  {
+    name: "Tabora",
+    price: 30,
+  },
+  {
+    name: "Taifa",
+    price: 40,
+  },
+  {
+    name: "Taifa-Burkina",
+    price: 40,
+  },
+  {
+    name: "Tantra Hills",
+    price: 40,
+  },
+  {
+    name: "Tema",
+    price: 100,
+  },
+  {
+    name: "Tesano",
+    price: 30,
+  },
+  {
+    name: "Teshie",
+    price: 75,
+  },
+  {
+    name: "Teshie Bush Road",
+    price: 70,
+  },
+  {
+    name: "Trassaco",
+    price: 60,
+  },
+  {
+    name: "Tse Addo",
+    price: 30,
+  },
+  {
+    name: "Tudu",
+    price: 30,
+  },
+  {
+    name: "University Of Ghana",
+    price: 30,
+  },
+  {
+    name: "UPSA",
+    price: 45,
+  },
+  {
+    name: "Weija",
+    price: 50,
+  },
+  {
+    name: "West Legon",
+    price: 50,
+  },
+  {
+    name: "Zoti Area",
+    price: 30,
+  },
+];
