@@ -6,11 +6,33 @@
   }
 }
 
+
+@keyframes scroll {
+  0% {
+    transform: translateX(30%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+
 @theme {
   --color-primary: #f8c61e;
   --color-secondary: #252c37;
   --text-black: #000;
   --text-white: #fff;
   --color-bg1: #f6f4f1;
+}
+
+.marquee-container {
+  width: 100%;          
+  overflow: hidden;    
+}
+
+.marquee {
+  display: inline-block;
+  white-space: nowrap; 
+  animation: scroll 60s linear infinite;
 }
 
