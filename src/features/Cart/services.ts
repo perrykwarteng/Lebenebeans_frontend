@@ -1,9 +1,9 @@
-import axios from "axios";
+import { api } from "../../lib/axios";
 
 export type CartType = {
   foodName: string;
   quantity: number;
-  price: number;
+  unitPrice: number;
 };
 
 export interface OrderInfo {
@@ -19,10 +19,7 @@ export interface OrderInfo {
 }
 
 export const createOrder = async (formData: OrderInfo) => {
-  const res = await axios.post(
-    `${import.meta.env.VITE_API_URL}/api/orders/orders`,
-    formData,
-  );
+  const res = await api.post(`/api/orders/orders`, formData);
   const authorization_url = res.data.data.data.authorization_url;
   window.location.href = authorization_url;
 };
