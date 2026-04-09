@@ -185,7 +185,7 @@ export const Orders = () => {
                 </div>
               );
             })
-            .reverse()
+            
         ) : (
           <p className="text-gray-400 text-center col-span-full">
             No orders available.
