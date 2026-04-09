@@ -17,27 +17,18 @@ export const CartItem = ({
   name,
   price,
   quantity,
-  image,
   removeItem,
   decreaseQty,
   increaseQty,
 }: CartItem) => {
   return (
-    <div className="border-t-2 border-gray-200 pt-4 flex flex-col md:flex-row items-center justify-between gap-4 my-3 p-4 rounded-2xl hover:shadow-lg w-full transition-shadow bg-white">
+    <div className="border-2 border-gray-200 pt-4 flex flex-row items-center justify-between gap-4 my-3 p-4 rounded-2xl w-full transition-shadow bg-white">
       <div className="flex flex-col md:flex-row md:items-center gap-4 w-full md:w-2/3">
-        <div className="min-w-24 min-h-24 md:w-28 md:h-28 shrink-0">
-          <img
-            src={image}
-            alt={name}
-            className="w-full h-full rounded-2xl object-cover shadow-sm"
-          />
-        </div>
-
         <div className="flex-1 flex flex-col justify-center">
-          <h4 className="text-sm md:text-lg text-secondary font-semibold line-clamp-2">
+          <h4 className="text-[18px] md:text-lg text-secondary font-semibold line-clamp-2">
             {name}
           </h4>
-          <p className="mt-2 text-[16px] md:text-[18px] text-secondary font-medium">
+          <p className="mt-2 text-[18px] text-yellow-500 font-medium">
             GHS {price}
           </p>
         </div>
