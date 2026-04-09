@@ -2,8 +2,52 @@ import Logo from "../../assets/images/salad.png";
 import bgImage from "../../assets/images/bg.jpg";
 import { Button } from "../../components/ui/Button";
 import { InputField } from "../../components/ui/Input";
+import { useMutation } from "@tanstack/react-query";
+import { login } from "./services";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
+import { useUserStore } from "../../store/useUserStore";
+
+export type loginType = {
+  email: string;
+  password: string;
+};
 
 export const Login = () => {
+  const { setUser } = useUserStore();
+  const navigate = useNavigate();
+  const [loginForm, setLoginForm] = useState<loginType>({
+    email: "",
+    password: "",
+  });
+
+  const getValue = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setLoginForm((p) => ({ ...p, [name]: value }));
+  };
+
+  const { mutate } = useMutation({
+    mutationFn: login,
+    onSuccess: (data) => {
+      toast.success("Login Successfully");
+      navigate("/admin/dashboard");
+      setUser(data?.data.user);
+      setLoginForm({
+        email: "",
+        password: "",
+      });
+    },
+    onError: (data) => {
+      toast.success(data.message);
+    },
+  });
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    mutate(loginForm);
+  };
+
   return (
     <>
       <div
@@ -32,16 +76,24 @@ export const Login = () => {
               </p>
             </div>
           </div>
-          <form className="">
+          <form onSubmit={handleSubmit}>
             <div className="my-1.5">
-              <InputField label="Email" name={"email"} />
+              <InputField
+                label="Email"
+                name={"email"}
+                type="email"
+                value={loginForm.email}
+                onChange={getValue}
+              />
             </div>
             <div className="my-1.5">
               <InputField
                 label="Password"
                 name={"password"}
                 type="password"
+                value={loginForm.password}
                 className="border border-black"
+                onChange={getValue}
               />
             </div>
             <div className="mt-5">
