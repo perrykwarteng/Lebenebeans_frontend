@@ -12,13 +12,15 @@ import { InputField } from "../../components/ui/Input";
 import { useCartStore } from "../../store/useCartStore";
 import { createOrder, type CartType, type OrderInfo } from "./services";
 import { toast } from "sonner";
-import { Location } from "../../data/LocationData";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { getLocations } from "../Dashboard/service";
+import type { LocationType } from "../Dashboard/type";
+import { formatCurrency } from "../../utils/currencyDecimal";
 
 export const Cart = () => {
   const [open, setOpen] = useState(false);
   const { id } = useParams();
-  const data = menuData;
+  const menuDatas = menuData;
   const effectRan = useRef(false);
   const { item, addCart, removeCart, increaseQty, decreaseQty } =
     useCartStore();
@@ -29,16 +31,24 @@ export const Cart = () => {
   const [location, setLocation] = useState("");
   const [note, setNote] = useState("");
 
-  const locObj = Location.find((loc) => loc.name === location);
-  const deliveryFee = locObj ? locObj.price : 0;
+  const { data } = useQuery({
+    queryKey: ["locations"],
+    queryFn: getLocations,
+  });
 
-  const locationArr = Location.map((loc) => loc.name);
+  const locationArr = data?.map((loc: LocationType) => loc.name);
+
+  const deliveryFee: number =
+    deliveryType === "Pick Up"
+      ? 0
+      : (data?.find((loc: LocationType) => loc.name === location)?.price ?? 0);
 
   const totalFoodPrice = item.reduce(
     (sum, product) => sum + product.price * product.quantity,
     0,
   );
-  const totalPrice = totalFoodPrice + deliveryFee;
+
+  const totalPrice = Number(totalFoodPrice) + Number(deliveryFee);
 
   useEffect(() => {
     window.scrollTo({
@@ -49,7 +59,7 @@ export const Cart = () => {
 
   useEffect(() => {
     if (effectRan.current) return;
-    const product = data.find((p) => p.id === Number(id));
+    const product = menuData.find((p) => p.id === Number(id));
     if (product) addCart(product);
     effectRan.current = true;
   }, [id]);
@@ -79,7 +89,7 @@ export const Cart = () => {
     const orderItem: CartType[] = item.map((i) => ({
       foodName: i.name,
       quantity: i.quantity,
-      price: i.price,
+      unitPrice: i.price,
     }));
 
     const data: OrderInfo = {
@@ -93,12 +103,17 @@ export const Cart = () => {
       foodCost: totalFoodPrice,
       totalPrice: totalPrice,
     };
-
     mutate(data);
+
+    setName("");
+    setNote("");
+    setNumber("");
+    setDeliveryType("");
+    setLocation("");
   };
 
   const handelAddCartModal = async (id: number) => {
-    const product = data.find((p) => p.id === Number(id));
+    const product = menuDatas.find((p) => p.id === Number(id));
     if (product) addCart(product);
     setOpen(false);
   };
@@ -108,54 +123,50 @@ export const Cart = () => {
       <MainLayout>
         <div className="px-8 md:px-16 py-24 bg-bg1">
           <div className="flex flex-col items-center justify-center">
-            <h2 className="text-[40px] font-medium">My Cart</h2>
+            <h2 className="text-[30px] font-medium">My Cart</h2>
             <div className="w-15 h-1 bg-primary"></div>
           </div>
 
-          <div className="flex flex-col gap-y-5 md:flex-row md:gap-x-6 mt-10">
-            <div className="border border-primary bg-white rounded-[5px] p-2 md:p-5 w-full md:w-3/5 max-h-140 overflow-y-scroll">
-              <div className="">
-                {item.length === 0 ? (
-                  <div className="h-120 flex-col gap-y-3 flex items-center justify-center">
-                    <p className="text-[20px] text-secondary">
-                      No Item in Cart
-                    </p>
-                    <div
-                      className="flex gap-x-3 items-center bg-primary hover:bg-secondary hover:text-white px-5 py-2 text-center rounded-xl text-secondary"
-                      onClick={() => setOpen(true)}
-                    >
-                      <TbShoppingBagPlus />
-                      <Button
-                        text="Add Another Food or Extras"
-                        Stlye="bg-transparent"
-                      />
-                    </div>
+          <div className="flex flex-col gap-y-5 md:flex-row md:gap-x-6 mt-4">
+            <div className="flex-2">
+              {item.length === 0 ? (
+                <div className="h-120 flex-col gap-y-3 flex items-center justify-center">
+                  <p className="text-[20px] text-secondary">No Item in Cart</p>
+                  <div
+                    className="flex gap-x-3 items-center bg-primary hover:bg-secondary hover:text-white px-5 py-2 text-center rounded-xl text-secondary"
+                    onClick={() => setOpen(true)}
+                  >
+                    <TbShoppingBagPlus />
+                    <Button
+                      text="Add Another Food or Extras"
+                      Stlye="bg-transparent"
+                    />
                   </div>
-                ) : (
-                  item.map((product) => (
-                    <div
-                      key={product.id}
-                      className="flex items-center justify-center"
-                    >
-                      <CartItem
-                        id={product.id}
-                        name={product.name}
-                        price={product.price}
-                        quantity={product.quantity}
-                        image={product.image}
-                        removeItem={removeCart}
-                        increaseQty={increaseQty}
-                        decreaseQty={decreaseQty}
-                      />
-                    </div>
-                  ))
-                )}
-              </div>
+                </div>
+              ) : (
+                item.map((product) => (
+                  <div
+                    key={product.id}
+                    className="flex items-center justify-center"
+                  >
+                    <CartItem
+                      id={product.id}
+                      name={product.name}
+                      price={product.price}
+                      quantity={product.quantity}
+                      image={product.image}
+                      removeItem={removeCart}
+                      increaseQty={increaseQty}
+                      decreaseQty={decreaseQty}
+                    />
+                  </div>
+                ))
+              )}
               <div
-                className={`${item.length === 0 ? "hidden" : " mt-10 flex items-center justify-center"}`}
+                className={`${item.length === 0 ? "hidden" : "flex items-center justify-center"}`}
               >
                 <div
-                  className="flex gap-x-3 items-center bg-primary hover:bg-secondary hover:text-white px-5 py-2 text-center rounded-xl text-secondary"
+                  className="flex gap-x-3 items-center bg-primary px-5 py-2 text-center rounded-xl text-secondary"
                   onClick={() => setOpen(true)}
                 >
                   <TbShoppingBagPlus />
@@ -166,6 +177,7 @@ export const Cart = () => {
                 </div>
               </div>
             </div>
+
             <div className="border border-primary bg-white rounded-[5px] p-5 w-full md:w-2/5">
               <h2 className="text-primary text-[30px]">Order Info</h2>
               <div className="h-0.5 w-full bg-gray-300"></div>
@@ -184,7 +196,6 @@ export const Cart = () => {
                   label="Phone Number (for Deliver)"
                   name="number"
                   type="number"
-                  maxLength={10}
                   placeholder="enter your number"
                   value={number}
                   onChange={(e) => setNumber(e.target.value)}
@@ -215,7 +226,7 @@ export const Cart = () => {
                 </div>
               </div>
 
-              {deliveryType === "Pick Up" ? null : (
+              {deliveryType === "Dispatch Rider" && (
                 <div className="my-1.5">
                   <p className="mb-1 text-secondary md:text-[16px]">Location</p>
                   <Select
@@ -253,20 +264,20 @@ export const Cart = () => {
                 <div className="flex items-center justify-between">
                   <p className="text-secondary md:text-[18px]">Delivery Fee:</p>
                   <p className="text-secondary md:text-[18px] font-semibold">
-                    Ghc{deliveryFee.toFixed(2)}
+                    {formatCurrency(deliveryFee)}
                   </p>
                 </div>
                 <div className="flex items-center justify-between">
                   <p className="text-secondary md:text-[18px]">Food Cost:</p>
                   <p className="text-secondary md:text-[18px] font-semibold">
-                    Ghc{totalFoodPrice.toFixed(2)}
+                    {formatCurrency(totalFoodPrice)}
                   </p>
                 </div>
                 <div className="border border-gray-200 my-2"></div>
                 <div className="flex items-center justify-between">
                   <p className="text-secondary md:text-[18px]">Total Price:</p>
                   <p className="text-secondary md:text-[18px] font-semibold">
-                    Ghc{totalPrice.toFixed(2)}
+                    {formatCurrency(totalPrice)}
                   </p>
                 </div>
               </div>
@@ -274,7 +285,7 @@ export const Cart = () => {
               <div className="mt-4 flex items-center justify-center">
                 <Button
                   isDisabled={isPending}
-                  text={`${isPending ? "Creating Order" : "Proceed To Checkout"}`}
+                  text={`${isPending ? "Creating Order..." : "Proceed To Checkout"}`}
                   type="submit"
                   action={handleSubmit}
                 />
@@ -284,7 +295,7 @@ export const Cart = () => {
         </div>
 
         <Modal
-          title="Add Menu"
+          title="Add Food or Extras"
           isOpen={open}
           onClose={() => {
             setOpen(!open);
@@ -292,7 +303,7 @@ export const Cart = () => {
           size="lg"
         >
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {data.map((item) => (
+            {menuDatas.map((item) => (
               <MenuItem
                 key={item.id}
                 name={item.name}
