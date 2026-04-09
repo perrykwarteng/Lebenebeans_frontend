@@ -4,16 +4,26 @@ import { MenuFilterSearch } from "../Menu/components/MenuFilterSearch";
 import { MenuItem } from "../Menu/components/MenuItem";
 import type { Cart } from "../../store/useCartStore";
 import { motion } from "framer-motion";
+import { useQuery } from "@tanstack/react-query";
+import { getCloseStatus } from "../Dashboard/service";
+import type { CloseType } from "../Dashboard/type";
 
 export const Menu = () => {
-  const data = menuData;
+  const { data, refetch } = useQuery<CloseType>({
+    queryKey: ["closeStatus"],
+    queryFn: getCloseStatus,
+  });
+
+  useEffect(() => {
+    refetch();
+  }, [refetch]);
 
   const [searchText, setSearchText] = useState("");
   const [filterText, setFilterText] = useState("");
   const [searchData, setSearchData] = useState<Cart[]>([]);
 
   useEffect(() => {
-    let filtered = data;
+    let filtered = menuData;
 
     if (searchText.trim()) {
       filtered = filtered.filter((item) =>
@@ -40,7 +50,7 @@ export const Menu = () => {
         id="menu"
       >
         <div className="flex flex-col items-center justify-center">
-          <h2 className="text-[40px] text-center font-medium">
+          <h2 className="text-[35px] lg:text-[40px] text-center font-medium">
             Explore Our Menu
           </h2>
           <div className="w-15 h-1 bg-primary"></div>
@@ -54,7 +64,7 @@ export const Menu = () => {
           />
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {(searchData.length > 0 ? searchData : data).map((item) => (
+          {(searchData.length > 0 ? searchData : menuData).map((item) => (
             <MenuItem
               key={item.id}
               name={item.name}
@@ -62,6 +72,13 @@ export const Menu = () => {
               price={item.price}
               image={item.image}
               id={item.id}
+              lockButton={
+                data?.closeOrders === "open"
+                  ? false
+                  : data?.closeOrders === "close"
+                    ? true
+                    : null
+              }
               addCart={() => {}}
             />
           ))}
