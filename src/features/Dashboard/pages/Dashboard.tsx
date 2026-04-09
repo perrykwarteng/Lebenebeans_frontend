@@ -1,6 +1,6 @@
 import { DashboardLayout } from "../layout/DashboardLayout";
 import { HiMiniCalendarDateRange } from "react-icons/hi2";
-import { StatCard } from "../components/startCard";
+import { StatCard } from "../components/statCard";
 import { useQuery } from "@tanstack/react-query";
 import { getStatCard } from "../service";
 import { FiShoppingCart } from "react-icons/fi";
@@ -72,21 +72,21 @@ export const Dashboard = () => {
         title: "Total Orders",
         subtitle: "Orders made this period",
         value: data?.totalOrders?.toLocaleString() || "0",
-        icon: <FiShoppingCart />,
+        icon: <FiShoppingCart className="text-[22px]" />,
       },
       {
         id: 2,
         title: "Total Revenue",
         subtitle: "Total earnings this period",
         value: formatCurrency(Number(data?.totalRevenue ?? 0)),
-        icon: <FaMoneyCheckAlt />,
+        icon: <FaMoneyCheckAlt className="text-[22px]" />,
       },
       {
         id: 3,
         title: "Amount To Be Paid",
         subtitle: "Amount to be paid this period",
         value: formatCurrency(Number(data?.amountToPay ?? 0)),
-        icon: <FaMoneyCheckAlt />,
+        icon: <FaMoneyCheckAlt className="text-[22px]" />,
       },
     ],
     [data],
