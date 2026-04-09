@@ -3,6 +3,10 @@ import App from "./App";
 import { Cart } from "./features/Cart/Cart";
 import { Login } from "./features/Auth/Login";
 import { VerifyPayment } from "./features/Auth/verifyPayment";
+import { Dashboard } from "./features/Dashboard/pages/Dashboard";
+import { Orders } from "./features/Dashboard/pages/Orders";
+import { Delivered } from "./features/Dashboard/pages/Delivered";
+import { Location } from "./features/Dashboard/pages/Location";
 
 export const routes = createBrowserRouter([
   {
@@ -20,5 +24,21 @@ export const routes = createBrowserRouter([
   {
     path: "/verify",
     element: <VerifyPayment />,
+  },
+  {
+    path: "/admin/dashboard",
+    element: <Dashboard />,
+  },
+  {
+    path: "/admin/orders",
+    element: <Orders />,
+  },
+  {
+    path: "/admin/delivered",
+    element: <Delivered />,
+  },
+  {
+    path: "/admin/location",
+    element: <Location />,
   },
 ]);
