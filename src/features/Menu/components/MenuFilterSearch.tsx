@@ -26,7 +26,7 @@ export const MenuFilterSearch = ({
             placeholder="Search for meals…"
             value={menuSearchValue}
             onChange={handelMenuSearch}
-            className="bg-transparent outline-none px-7 py-3 w-full"
+            className="bg-transparent outline-none px-7 py-3 w-full placeholder:text-[17px]"
           />
         </div>
       </div>

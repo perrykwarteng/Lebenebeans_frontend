@@ -3,4 +3,5 @@ export type selectInputType = {
   handleSelect: (option: string) => void;
   options: string[];
   label: string;
+  borderColor?: string;
 };
