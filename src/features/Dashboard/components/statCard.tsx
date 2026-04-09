@@ -6,6 +6,7 @@ type StatCardProps = {
   bgColor?: string;
   iconColor?: string;
   textColor?: string;
+  subTextColor?: string;
 };
 
 export const StatCard = ({
@@ -16,6 +17,7 @@ export const StatCard = ({
   bgColor = "bg-white",
   iconColor = "text-primary",
   textColor = "text-gray-800",
+  subTextColor = "text-gray-800",
 }: StatCardProps) => {
   return (
     <div className={`p-5 rounded-xl shadow-md ${bgColor}`}>
@@ -29,7 +31,9 @@ export const StatCard = ({
         )}
         <div>
           <p className={`text-[20px] font-medium ${textColor}`}>{title}</p>
-          {subtitle && <p className="text-[17px] text-secondary">{subtitle}</p>}
+          {subtitle && (
+            <p className={`text-[17px] ${subTextColor}`}>{subtitle}</p>
+          )}
         </div>
       </div>
 

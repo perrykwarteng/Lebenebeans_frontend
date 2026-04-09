@@ -150,6 +150,7 @@ export const Dashboard = () => {
             bgColor={stat.id === 1 ? "bg-primary" : "bg-white"}
             iconColor={stat.id === 1 ? "text-primary" : "text-secondary"}
             textColor={stat.id === 1 ? "text-white" : "text-secondary"}
+            subTextColor={stat.id === 1 ? "text-white" : "text-secondary"}
           />
         ))}
       </div>
