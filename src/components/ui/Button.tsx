@@ -7,8 +7,7 @@ type btn = {
 };
 
 export const Button = ({ Stlye, type, text, action, isDisabled }: btn) => {
-  const defaultStlye =
-    "bg-primary hover:bg-secondary hover:text-white px-5 py-2 text-center rounded-xl text-secondary";
+  const defaultStlye = `${isDisabled ? "bg-secondary text-white" : "bg-primary hover:bg-secondary text-secondary hover:text-white"} px-5 py-2 text-[19px] text-center rounded-xl`;
   return (
     <button
       className={`${Stlye || defaultStlye} cursor-pointer transition all duration-150`}
