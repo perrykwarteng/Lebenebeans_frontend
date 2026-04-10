@@ -21,7 +21,7 @@ import Food20 from "../assets/images/food/Banku-Fish.jpeg";
 
 export const menuData = [
   {
-    id: 1,
+    id: 483920,
     name: "Beans with plantain and egg",
     description: "Beans with plantain and egg.",
     price: 75.0,
@@ -29,7 +29,7 @@ export const menuData = [
     quantity: 0,
   },
   {
-    id: 2,
+    id: 729154,
     name: "Beans with plantain, egg and fish",
     description: "Beans with plantain, egg, and fish.",
     price: 90.0,
@@ -37,7 +37,7 @@ export const menuData = [
     quantity: 0,
   },
   {
-    id: 3,
+    id: 615837,
     name: "Beans with plantain, egg and meat",
     description: "Beans with plantain, egg, and meat.",
     price: 95.0,
@@ -45,7 +45,7 @@ export const menuData = [
     quantity: 0,
   },
   {
-    id: 4,
+    id: 902461,
     name: "Beans with plantain, egg and chicken",
     description: "Beans with plantain, egg, and chicken.",
     price: 90.0,
@@ -53,7 +53,7 @@ export const menuData = [
     quantity: 0,
   },
   {
-    id: 5,
+    id: 348295,
     name: "Beans and rice with plantain and egg",
     description: "Rice and beans with plantain and egg.",
     price: 85.0,
@@ -61,7 +61,7 @@ export const menuData = [
     quantity: 0,
   },
   {
-    id: 6,
+    id: 771204,
     name: "Beans and rice with plantain, egg and chicken",
     description: "Rice and beans with plantain, egg, and chicken.",
     price: 100.0,
@@ -69,7 +69,7 @@ export const menuData = [
     quantity: 0,
   },
   {
-    id: 7,
+    id: 564982,
     name: "Beans and rice with plantain, egg and meat",
     description: "Rice and beans with plantain, egg, and meat.",
     price: 105.0,
@@ -77,7 +77,7 @@ export const menuData = [
     quantity: 0,
   },
   {
-    id: 8,
+    id: 893176,
     name: "Beans and rice with plantain, egg and fish",
     description: "Rice and beans with plantain, egg, and fish.",
     price: 100.0,
@@ -85,7 +85,7 @@ export const menuData = [
     quantity: 0,
   },
   {
-    id: 9,
+    id: 210457,
     name: "Beans and rice with plantain, egg, fish and meat",
     description: "Rice and beans with plantain, egg, fish, and meat.",
     price: 120.0,
@@ -93,7 +93,7 @@ export const menuData = [
     quantity: 0,
   },
   {
-    id: 10,
+    id: 657319,
     name: "Beans and rice with plantain, egg, fish and chicken",
     description: "Rice and beans with plantain, egg, fish, and chicken.",
     price: 120.0,
@@ -101,7 +101,7 @@ export const menuData = [
     quantity: 0,
   },
   {
-    id: 11,
+    id: 384720,
     name: "Plain rice and stew with red fish",
     description: "Rice with stew and red fish.",
     price: 90.0,
@@ -109,7 +109,7 @@ export const menuData = [
     quantity: 0,
   },
   {
-    id: 12,
+    id: 918263,
     name: "Plain rice with stew and chicken",
     description: "Rice with stew and chicken.",
     price: 90.0,
@@ -117,7 +117,7 @@ export const menuData = [
     quantity: 0,
   },
   {
-    id: 13,
+    id: 472905,
     name: "Plain rice and beef",
     description: "Rice with stew and beef.",
     price: 90.0,
@@ -125,7 +125,7 @@ export const menuData = [
     quantity: 0,
   },
   {
-    id: 14,
+    id: 836174,
     name: "Fried Rice with chicken",
     description: "Fried rice with chicken.",
     price: 100.0,
@@ -133,7 +133,7 @@ export const menuData = [
     quantity: 0,
   },
   {
-    id: 15,
+    id: 259683,
     name: "Fried Rice with cow meat",
     description: "Fried rice with beef.",
     price: 100.0,
@@ -141,7 +141,7 @@ export const menuData = [
     quantity: 0,
   },
   {
-    id: 16,
+    id: 704918,
     name: "Fried Rice with red fish",
     description: "Fried rice with red fish.",
     price: 100.0,
@@ -149,7 +149,7 @@ export const menuData = [
     quantity: 0,
   },
   {
-    id: 17,
+    id: 593027,
     name: "Jollof with chicken",
     description: "Jollof rice with chicken.",
     price: 100.0,
@@ -157,7 +157,7 @@ export const menuData = [
     quantity: 0,
   },
   {
-    id: 18,
+    id: 861492,
     name: "Jollof with cow meat",
     description: "Jollof rice with beef.",
     price: 100.0,
@@ -165,7 +165,7 @@ export const menuData = [
     quantity: 0,
   },
   {
-    id: 19,
+    id: 320845,
     name: "Jollof with red fish",
     description: "Jollof rice with red fish.",
     price: 100.0,
@@ -173,7 +173,7 @@ export const menuData = [
     quantity: 0,
   },
   {
-    id: 20,
+    id: 948216,
     name: "Banku with okro stew (crab, Wele & Meat)",
     description: "Banku with okro stew, crab, wele & meat.",
     price: 100.0,
@@ -181,11 +181,59 @@ export const menuData = [
     quantity: 0,
   },
   {
-    id: 21,
+    id: 675309,
     name: "Banku with okro stew (crab, Wele & Meat)",
     description: "Banku with okro stew, crab, wele & meat.",
     price: 120.0,
     image: Food20,
     quantity: 0,
+  },
+  {
+    id: 182736,
+    name: "Extra plantain",
+    price: 10.0,
+    quantity: 0,
+    image: "",
+    description: "",
+  },
+  {
+    id: 739105,
+    name: "Extra chicken",
+    price: 15.0,
+    quantity: 0,
+    image: "",
+    description: "",
+  },
+  {
+    id: 456218,
+    name: "Extra beef",
+    price: 20.0,
+    quantity: 0,
+    image: "",
+    description: "",
+  },
+  {
+    id: 807364,
+    name: "Extra cow meat",
+    price: 20.0,
+    quantity: 0,
+    image: "",
+    description: "",
+  },
+  {
+    id: 291650,
+    name: "Extra fish",
+    price: 20.0,
+    quantity: 0,
+    image: "",
+    description: "",
+  },
+  {
+    id: 564173,
+    name: "Extra egg",
+    price: 5.0,
+    quantity: 0,
+    image: "",
+    description: "",
   },
 ];
