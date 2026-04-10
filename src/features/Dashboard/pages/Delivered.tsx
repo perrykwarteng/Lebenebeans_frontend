@@ -88,9 +88,9 @@ export const Delivered = () => {
                       <div className="flex gap-x-2">
                         <h3 className="font-medium">Delivery Type:</h3>
                         <p className="text-gray-500">
-                          {o.deliveryType === "dispatch-rider"
+                          {o.deliveryType === "Dispatch Rider"
                             ? "Dispatch"
-                            : o.deliveryType === "pick-up"
+                            : o.deliveryType === "Pick Up"
                               ? "Pick Up"
                               : ""}
                         </p>
