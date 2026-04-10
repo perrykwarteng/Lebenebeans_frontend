@@ -23,7 +23,9 @@ export const Menu = () => {
   const [searchData, setSearchData] = useState<Cart[]>([]);
 
   useEffect(() => {
-    let filtered = menuData;
+    let filtered = menuData.filter(
+      (item) => !item.name?.toLowerCase().includes("extra"),
+    );
 
     if (searchText.trim()) {
       filtered = filtered.filter((item) =>

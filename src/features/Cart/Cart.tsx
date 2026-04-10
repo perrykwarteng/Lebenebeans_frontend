@@ -16,7 +16,6 @@ import { getLocations } from "../Dashboard/service";
 import type { LocationType } from "../Dashboard/type";
 import { formatCurrency } from "../../utils/currencyDecimal";
 import { SelectSearch } from "../../components/ui/selectSearch";
-import { Select } from "../../components/ui/Select";
 
 export const CartPage = () => {
   const [open, setOpen] = useState(false);
@@ -119,8 +118,9 @@ export const CartPage = () => {
     setOpen(false);
   };
 
-  const [filterText, setFilterText] = useState("");
+  const [filterText, setFilterText] = useState("All");
   const [filtered, setFiltered] = useState(menuData);
+  const filterOptions = ["All", "Beans", "Rice", "Banku", "Extra"];
 
   useEffect(() => {
     if (!filterText || filterText === "All") {
@@ -319,16 +319,19 @@ export const CartPage = () => {
           }}
           size="lg"
         >
-          <div className="py-4">
-            <Select
-              value={filterText}
-              handleSelect={(value: string) => {
-                setFilterText(value);
-              }}
-              options={["All", "Beans", "Rice", "Banku", "Extra"]}
-              label={"Filter Food"}
-            />
+          <div className="py-4 flex items-center justify-center flex-wrap gap-x-3 gap-y-2">
+            {filterOptions.map((item) => (
+              <div
+                className={` p-2 px-5 rounded-lg cursor-pointer ${filterText === item ? "bg-secondary text-white" : "bg-gray-300 text-secondary"}`}
+                onClick={() => {
+                  setFilterText(item);
+                }}
+              >
+                {item === "Extra" ? "Extras" : item}
+              </div>
+            ))}
           </div>
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {filtered.map((item) => (
               <MenuItem

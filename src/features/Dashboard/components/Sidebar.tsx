@@ -55,7 +55,7 @@ export const Sidebar = () => {
   return (
     <div className="p-5 relative h-full">
       <div className="">
-        <Link className="flex items-center gap-x-2" to="/">
+        <Link className="flex items-center gap-x-2" to="/admin/dashboard">
           <img className="w-10" src={Logo} alt="Main Logo" />
           <h1 className="text-primary text-[22px] font-medium">Lebene beans</h1>
         </Link>
