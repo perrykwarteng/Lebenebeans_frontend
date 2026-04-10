@@ -4,4 +4,5 @@ export type selectInputType = {
   options: string[];
   label: string;
   borderColor?: string;
+  isSearch?: boolean;
 };

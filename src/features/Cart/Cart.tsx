@@ -7,7 +7,6 @@ import { menuData } from "../../data/menuData";
 import { MenuItem } from "../Menu/components/MenuItem";
 import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Select } from "../../components/ui/Select";
 import { InputField } from "../../components/ui/Input";
 import { useCartStore } from "../../store/useCartStore";
 import { createOrder, type CartType, type OrderInfo } from "./services";
@@ -16,6 +15,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { getLocations } from "../Dashboard/service";
 import type { LocationType } from "../Dashboard/type";
 import { formatCurrency } from "../../utils/currencyDecimal";
+import { SelectSearch } from "../../components/ui/selectSearch";
 
 export const Cart = () => {
   const [open, setOpen] = useState(false);
@@ -229,7 +229,8 @@ export const Cart = () => {
               {deliveryType === "Dispatch Rider" && (
                 <div className="my-1.5">
                   <p className="mb-1 text-secondary md:text-[16px]">Location</p>
-                  <Select
+
+                  <SelectSearch
                     value={location}
                     options={locationArr}
                     label={"Select Location"}
