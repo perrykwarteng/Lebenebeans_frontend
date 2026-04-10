@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "./App";
-import { Cart } from "./features/Cart/Cart";
+import { CartPage } from "./features/Cart/Cart";
 import { Login } from "./features/Auth/Login";
 import { VerifyPayment } from "./features/Auth/verifyPayment";
 import { Dashboard } from "./features/Dashboard/pages/Dashboard";
@@ -15,7 +15,7 @@ export const routes = createBrowserRouter([
   },
   {
     path: "/cart/:id",
-    element: <Cart />,
+    element: <CartPage />,
   },
   {
     path: "/login",
