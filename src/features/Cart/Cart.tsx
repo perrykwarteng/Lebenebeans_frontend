@@ -16,8 +16,9 @@ import { getLocations } from "../Dashboard/service";
 import type { LocationType } from "../Dashboard/type";
 import { formatCurrency } from "../../utils/currencyDecimal";
 import { SelectSearch } from "../../components/ui/selectSearch";
+import { Select } from "../../components/ui/Select";
 
-export const Cart = () => {
+export const CartPage = () => {
   const [open, setOpen] = useState(false);
   const { id } = useParams();
   const menuDatas = menuData;
@@ -117,6 +118,21 @@ export const Cart = () => {
     if (product) addCart(product);
     setOpen(false);
   };
+
+  const [filterText, setFilterText] = useState("");
+  const [filtered, setFiltered] = useState(menuData);
+
+  useEffect(() => {
+    if (!filterText || filterText === "All") {
+      setFiltered(menuData);
+    } else {
+      setFiltered(
+        menuData.filter((item) =>
+          item.name.toLowerCase().includes(filterText.toLowerCase()),
+        ),
+      );
+    }
+  }, [filterText]);
 
   return (
     <>
@@ -303,12 +319,21 @@ export const Cart = () => {
           }}
           size="lg"
         >
+          <div className="py-4">
+            <Select
+              value={filterText}
+              handleSelect={(value: string) => {
+                setFilterText(value);
+              }}
+              options={["All", "Beans", "Rice", "Banku", "Extra"]}
+              label={"Filter Food"}
+            />
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {menuDatas.map((item) => (
+            {filtered.map((item) => (
               <MenuItem
                 key={item.id}
                 name={item.name}
-                description={item.description}
                 price={item.price}
                 image={item.image}
                 id={item.id}
