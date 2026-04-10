@@ -68,7 +68,6 @@ export const Menu = () => {
             <MenuItem
               key={item.id}
               name={item.name}
-              description={item.description}
               price={item.price}
               image={item.image}
               id={item.id}
