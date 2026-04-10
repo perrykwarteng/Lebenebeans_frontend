@@ -18,6 +18,12 @@ import Food17 from "../assets/images/food/Jollof.jpg";
 import Food18 from "../assets/images/food/Jollof with cow meat.jpeg";
 import Food19 from "../assets/images/food/Jollof with red fish.jpeg";
 import Food20 from "../assets/images/food/Banku-Fish.jpeg";
+import Food21 from "../assets/images/food/fish.jpeg";
+import Food22 from "../assets/images/food/chichen.jpeg";
+import Food23 from "../assets/images/food/beef.jpeg";
+import Food24 from "../assets/images/food/plantain.jpeg";
+import Food25 from "../assets/images/food/egg.jpeg";
+import Food26 from "../assets/images/food/cowmeat.jpeg";
 
 export const menuData = [
   {
@@ -193,7 +199,7 @@ export const menuData = [
     name: "Extra plantain",
     price: 10.0,
     quantity: 0,
-    image: "",
+    image: Food24,
     description: "",
   },
   {
@@ -201,7 +207,7 @@ export const menuData = [
     name: "Extra chicken",
     price: 15.0,
     quantity: 0,
-    image: "",
+    image: Food22,
     description: "",
   },
   {
@@ -209,7 +215,7 @@ export const menuData = [
     name: "Extra beef",
     price: 20.0,
     quantity: 0,
-    image: "",
+    image: Food23,
     description: "",
   },
   {
@@ -217,7 +223,7 @@ export const menuData = [
     name: "Extra cow meat",
     price: 20.0,
     quantity: 0,
-    image: "",
+    image: Food26,
     description: "",
   },
   {
@@ -225,7 +231,7 @@ export const menuData = [
     name: "Extra fish",
     price: 20.0,
     quantity: 0,
-    image: "",
+    image: Food21,
     description: "",
   },
   {
@@ -233,7 +239,7 @@ export const menuData = [
     name: "Extra egg",
     price: 5.0,
     quantity: 0,
-    image: "",
+    image: Food25,
     description: "",
   },
 ];
