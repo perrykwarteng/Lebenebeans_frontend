@@ -4,6 +4,7 @@ import { getDeliveredOrder } from "../service";
 import type { Order } from "../type";
 import { useEffect, useRef, useState } from "react";
 import { formatDate } from "../../../utils/formatDateTime";
+import { FullPageLoader } from "../../../components/ui/fullPageLoader";
 
 export const Delivered = () => {
   const CHUNK_SIZE = 20;
@@ -55,7 +56,7 @@ export const Delivered = () => {
         <div className="mt-7 grid grid-cols-1 lg:grid-cols-2 gap-5">
           {isLoading ? (
             <p className="text-gray-400 text-center col-span-full">
-              Loading ...
+              <FullPageLoader />
             </p>
           ) : fetchedOrders.length > 0 ? (
             allOrders.map((order) => {

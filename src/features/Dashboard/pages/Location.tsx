@@ -15,6 +15,7 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { InputField } from "../../../components/ui/Input";
 import { Button } from "../../../components/ui/Button";
+import { FullPageLoader } from "../../../components/ui/fullPageLoader";
 
 const PAGE_SIZE = 10;
 
@@ -180,11 +181,7 @@ export const Location = () => {
 
               <tbody>
                 {isLoading ? (
-                  <tr>
-                    <td colSpan={3} className="text-center py-6">
-                      Loading...
-                    </td>
-                  </tr>
+                  <FullPageLoader />
                 ) : displayData?.length > 0 ? (
                   displayData.map((loc: LocationType) => (
                     <tr
