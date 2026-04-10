@@ -4,9 +4,8 @@ import { Link } from "react-router-dom";
 
 type MenuItemType = {
   name: string;
-  description: string;
   price: number;
-  image: string;
+  image?: string;
   id: number;
   isAddProject?: boolean;
   lockButton?: boolean | null;
@@ -68,11 +67,13 @@ export const MenuItem = ({
       </div>
 
       <div className="md:w-2/4 w-full order-1 md:order-2">
-        <img
-          className="w-full h-auto rounded-2xl object-contain"
-          src={image}
-          alt="food image"
-        />
+        {image === "" ? null : (
+          <img
+            className="w-full h-auto rounded-2xl object-contain"
+            src={image}
+            alt="food image"
+          />
+        )}
       </div>
     </div>
   );
