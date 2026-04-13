@@ -31,24 +31,14 @@ export const CartPage = () => {
   const [location, setLocation] = useState("");
   const [note, setNote] = useState("");
 
+  const getPromo = JSON.parse(localStorage.getItem("promo") || "");
+
   const { data } = useQuery({
     queryKey: ["locations"],
     queryFn: getLocations,
   });
 
   const locationArr = data?.map((loc: LocationType) => loc.name);
-
-  const deliveryFee: number =
-    deliveryType === "Pick Up"
-      ? 0
-      : (data?.find((loc: LocationType) => loc.name === location)?.price ?? 0);
-
-  const totalFoodPrice = item.reduce(
-    (sum, product) => sum + product.price * product.quantity,
-    0,
-  );
-
-  const totalPrice = Number(totalFoodPrice) + Number(deliveryFee);
 
   useEffect(() => {
     window.scrollTo({
@@ -74,6 +64,30 @@ export const CartPage = () => {
     },
   });
 
+  const orderItem: CartType[] = item.map((i) => ({
+    foodName: i.name,
+    quantity: i.quantity,
+    unitPrice: i.price,
+  }));
+
+  const deliveryFee: number =
+    deliveryType === "Pick Up"
+      ? 0
+      : getPromo?.state?.promo?.isActive &&
+          (orderItem.length >= getPromo.state.promo.minOrder ||
+            (orderItem[0]?.quantity >= getPromo.state.promo.minOrder &&
+              getPromo.state.promo.type === "FREE_DELIVERY"))
+        ? 0
+        : (data?.find((loc: LocationType) => loc.name === location)?.price ??
+          0);
+
+  const totalFoodPrice = item.reduce(
+    (sum, product) => sum + product.price * product.quantity,
+    0,
+  );
+
+  const totalPrice = Number(totalFoodPrice) + Number(deliveryFee);
+
   const handleSubmit = () => {
     if (
       !name ||
@@ -86,12 +100,6 @@ export const CartPage = () => {
       return toast.warning("Fill all required fields before submiting");
     }
 
-    const orderItem: CartType[] = item.map((i) => ({
-      foodName: i.name,
-      quantity: i.quantity,
-      unitPrice: i.price,
-    }));
-
     const data: OrderInfo = {
       order: orderItem,
       name: name,
@@ -102,6 +110,7 @@ export const CartPage = () => {
       deliveryFee: deliveryFee,
       foodCost: totalFoodPrice,
       totalPrice: totalPrice,
+      promoId: getPromo.state.promo.id,
     };
     mutate(data);
 
