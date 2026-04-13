@@ -14,8 +14,6 @@ export const api = axios.create({
 api.interceptors.response.use(
   (response) => response,
   (error) => {
-    console.log("API ERROR:", error.response);
-
     if (
       error.response?.status === 403 &&
       !window.location.pathname.includes("/login")
