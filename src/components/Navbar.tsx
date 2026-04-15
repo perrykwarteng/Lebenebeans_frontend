@@ -67,7 +67,7 @@ export const Navbar = () => {
               className="action"
               onClick={(e) => {
                 e.preventDefault();
-                const section = document.querySelector("/#menu");
+                const section = document.querySelector("#menu");
                 section?.scrollIntoView({ behavior: "smooth" });
               }}
             >
