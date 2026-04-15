@@ -17,6 +17,7 @@ import { formatCurrency } from "../../utils/currencyDecimal";
 import { SelectSearch } from "../../components/ui/selectSearch";
 import { usePromoStore } from "../../store/usePromoStore";
 import { useLocation, useNavigate } from "react-router-dom";
+import { safeParse } from "../../utils/saveParse";
 
 export const CartPage = () => {
   const [open, setOpen] = useState(false);
@@ -33,9 +34,9 @@ export const CartPage = () => {
   const [location, setLocation] = useState("");
   const [note, setNote] = useState("");
 
-  const getPromo = JSON.parse(localStorage.getItem("promo") ?? "null");
+  const getPromo = safeParse(localStorage.getItem("promo"));
   const promo = getPromo?.state?.promo;
-  const closeOrder = JSON.parse(localStorage.getItem("closeStatus") ?? "null");
+  const closeOrder = safeParse(localStorage.getItem("closeStatus"));
 
   const { data } = useQuery({
     queryKey: ["locations"],
