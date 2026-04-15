@@ -5,8 +5,7 @@ import { CartItem } from "./components/CartItem";
 import { Modal } from "../../components/ui/modal";
 import { menuData } from "../../data/menuData";
 import { MenuItem } from "../Menu/components/MenuItem";
-import { useEffect, useRef, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { InputField } from "../../components/ui/Input";
 import { useCartStore } from "../../store/useCartStore";
 import { createOrder, type CartType, type OrderInfo } from "./services";
@@ -17,13 +16,14 @@ import type { LocationType } from "../Dashboard/type";
 import { formatCurrency } from "../../utils/currencyDecimal";
 import { SelectSearch } from "../../components/ui/selectSearch";
 import { usePromoStore } from "../../store/usePromoStore";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export const CartPage = () => {
   const [open, setOpen] = useState(false);
-  const { id } = useParams();
+  const path = useLocation();
+  const nav = useNavigate();
   const menuDatas = menuData;
-  const effectRan = useRef(false);
-  const { item, addCart, removeCart, increaseQty, decreaseQty } =
+  const { item, addCart, clearCart, removeCart, increaseQty, decreaseQty } =
     useCartStore();
   const { clearPromo } = usePromoStore();
 
@@ -33,8 +33,9 @@ export const CartPage = () => {
   const [location, setLocation] = useState("");
   const [note, setNote] = useState("");
 
-  const getPromo = JSON.parse(localStorage.getItem("promo") || "");
+  const getPromo = JSON.parse(localStorage.getItem("promo") || "null");
   const promo = getPromo?.state?.promo;
+  const closeOrder = JSON.parse(localStorage.getItem("closeStatus") || "null");
 
   const { data } = useQuery({
     queryKey: ["locations"],
@@ -51,11 +52,11 @@ export const CartPage = () => {
   }, []);
 
   useEffect(() => {
-    if (effectRan.current) return;
-    const product = menuData.find((p) => p.id === Number(id));
-    if (product) addCart(product);
-    effectRan.current = true;
-  }, [id]);
+    const isCartPage = path.pathname.includes("/cart");
+    if (closeOrder === "close" && isCartPage) {
+      nav("/");
+    }
+  }, [closeOrder, path.pathname, closeOrder]);
 
   const { mutate, isPending } = useMutation({
     mutationFn: createOrder,
@@ -133,6 +134,7 @@ export const CartPage = () => {
     setNumber("");
     setDeliveryType("");
     setLocation("");
+    clearCart();
     clearPromo();
   };
 
@@ -383,7 +385,7 @@ export const CartPage = () => {
                 image={item.image}
                 id={item.id}
                 isAddProject
-                addCart={() => {
+                addToCart={() => {
                   handelAddCartModal(item.id);
                 }}
               />
