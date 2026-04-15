@@ -1,4 +1,11 @@
 import { api } from "../../lib/axios";
+import { AxiosError } from "axios";
+
+type ApiError = {
+  message: string;
+  code?: string;
+  status?: number;
+};
 
 export type CartType = {
   foodName: string;
@@ -26,6 +33,11 @@ export const createOrder = async (formData: OrderInfo) => {
 };
 
 export const getPromotion = async (code: string, type: string) => {
-  const res = await api.get(`/api/promotion?code=${code}&type=${type}`);
-  return res;
+  try {
+    const res = await api.get(`/api/promotion?code=${code}&type=${type}`);
+    return res;
+  } catch (err) {
+    const error = err as AxiosError<ApiError>;
+    return error.response;
+  }
 };

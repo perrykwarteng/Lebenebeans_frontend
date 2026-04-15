@@ -32,6 +32,7 @@ export const CartPage = () => {
   const [note, setNote] = useState("");
 
   const getPromo = JSON.parse(localStorage.getItem("promo") || "");
+  const promo = getPromo?.state?.promo;
 
   const { data } = useQuery({
     queryKey: ["locations"],
@@ -73,18 +74,29 @@ export const CartPage = () => {
   const deliveryFee: number =
     deliveryType === "Pick Up"
       ? 0
-      : getPromo?.state?.promo?.isActive &&
-          (orderItem.length >= getPromo.state.promo.minOrder ||
-            (orderItem[0]?.quantity >= getPromo.state.promo.minOrder &&
-              getPromo.state.promo.type === "FREE_DELIVERY"))
+      : promo?.isActive &&
+          (orderItem.length >= promo.minOrder ||
+            (orderItem[0]?.quantity >= promo.minOrder &&
+              promo.type === "FREE_DELIVERY"))
         ? 0
         : (data?.find((loc: LocationType) => loc.name === location)?.price ??
           0);
 
-  const totalFoodPrice = item.reduce(
-    (sum, product) => sum + product.price * product.quantity,
-    0,
-  );
+  const discount = promo?.orderDiscount ? promo.orderDiscount / 100 : 0;
+
+  const baseTotal = item.reduce((sum, product) => {
+    return sum + product.price * product.quantity;
+  }, 0);
+
+  const isValidDiscount =
+    promo?.isActive &&
+    promo?.type === "DISCOUNT" &&
+    (orderItem?.[0]?.quantity >= promo?.minOrder ||
+      orderItem.length >= promo.minOrder);
+
+  const totalFoodPrice = isValidDiscount
+    ? baseTotal - baseTotal * discount
+    : baseTotal;
 
   const totalPrice = Number(totalFoodPrice) + Number(deliveryFee);
 
@@ -285,16 +297,34 @@ export const CartPage = () => {
               </div>
 
               <div className="border border-gray-200 my-2"></div>
-
-              <div className="">
+              <div>
                 <div className="flex items-center justify-between">
-                  <p className="text-secondary md:text-[18px]">Delivery Fee:</p>
+                  <p className="text-secondary md:text-[18px]">
+                    Delivery Fee:
+                    {promo?.isActive &&
+                      promo.type === "FREE_DELIVERY" &&
+                      (orderItem.length >= promo.minOrder ||
+                        orderItem[0]?.quantity >= promo.minOrder) && (
+                        <span className="text-green-500 text-sm font-medium block">
+                          (Free delivery applied)
+                        </span>
+                      )}
+                  </p>
+
                   <p className="text-secondary md:text-[18px] font-semibold">
                     {formatCurrency(deliveryFee)}
                   </p>
                 </div>
                 <div className="flex items-center justify-between">
-                  <p className="text-secondary md:text-[18px]">Food Cost:</p>
+                  <p className="text-secondary md:text-[18px]">
+                    Food Cost:
+                    {isValidDiscount && (
+                      <span className="ml-2 text-green-500 text-sm font-medium">
+                        ({promo.orderDiscount}% OFF)
+                      </span>
+                    )}
+                  </p>
+
                   <p className="text-secondary md:text-[18px] font-semibold">
                     {formatCurrency(totalFoodPrice)}
                   </p>
