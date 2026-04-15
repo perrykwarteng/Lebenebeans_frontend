@@ -16,6 +16,7 @@ import { getLocations } from "../Dashboard/service";
 import type { LocationType } from "../Dashboard/type";
 import { formatCurrency } from "../../utils/currencyDecimal";
 import { SelectSearch } from "../../components/ui/selectSearch";
+import { usePromoStore } from "../../store/usePromoStore";
 
 export const CartPage = () => {
   const [open, setOpen] = useState(false);
@@ -24,6 +25,7 @@ export const CartPage = () => {
   const effectRan = useRef(false);
   const { item, addCart, removeCart, increaseQty, decreaseQty } =
     useCartStore();
+  const { clearPromo } = usePromoStore();
 
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
@@ -131,6 +133,7 @@ export const CartPage = () => {
     setNumber("");
     setDeliveryType("");
     setLocation("");
+    clearPromo();
   };
 
   const handelAddCartModal = async (id: number) => {
