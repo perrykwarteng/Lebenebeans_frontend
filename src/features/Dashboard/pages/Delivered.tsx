@@ -55,9 +55,7 @@ export const Delivered = () => {
 
         <div className="mt-7 grid grid-cols-1 lg:grid-cols-2 gap-5">
           {isLoading ? (
-            <p className="text-gray-400 text-center col-span-full">
-              <FullPageLoader />
-            </p>
+            <FullPageLoader />
           ) : fetchedOrders.length > 0 ? (
             allOrders.map((order) => {
               const o = order.orders;
@@ -66,6 +64,11 @@ export const Delivered = () => {
                   key={o.id}
                   className="bg-white w-full p-6 rounded-xl shadow-md space-y-4 relative"
                 >
+                  {o.promotion === "Promotion Order" ? (
+                    <div className="absolute bg-amber-400 px-2 py-1 text-white font-medium top-0 right-3 rounded-b-md">
+                      Promo
+                    </div>
+                  ) : null}
                   <div className="flex items-center justify-center gap-x-6 text-[20px]">
                     <div className="flex gap-x-2">
                       <h3 className="font-medium text-secondary ">OrderId:</h3>
