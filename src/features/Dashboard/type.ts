@@ -15,6 +15,7 @@ export interface OrderDetails {
   deliveryType: string;
   id: number;
   location: string;
+  promotion: string | null;
   name: string;
   note: string;
   orderId: string;

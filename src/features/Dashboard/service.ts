@@ -9,8 +9,6 @@ export const getPendingOrder = async (): Promise<Order[]> => {
 
 export const getDeliveredOrder = async (): Promise<Order[]> => {
   const res = await api.get(`/api/orders/deliveredOrders`);
-  console.log(res.data.data);
-
   return res.data.data;
 };
 
