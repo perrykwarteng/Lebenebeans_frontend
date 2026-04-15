@@ -3,8 +3,10 @@ import Logo from "../assets/images/salad.png";
 import { Button } from "./ui/Button";
 import { navData } from "../data/navData";
 import { motion } from "framer-motion";
+import { useLocation } from "react-router-dom";
 
 export const Navbar = () => {
+  const path = useLocation();
   const nav = navData;
 
   return (
@@ -19,24 +21,30 @@ export const Navbar = () => {
           </Link>
         </div>
         <div className="">
-          <ul className="">
-            {nav.map((navItem) => (
-              <Link
-                key={navItem.navText}
-                to={navItem.navLink}
-                onClick={(e) => {
-                  e.preventDefault();
-                  const section = document.querySelector(navItem.navLink);
-                  section?.scrollIntoView({ behavior: "smooth" });
-                }}
-              >
-                <li className="text-secondary text-[20px] font-medium hover:underline hover:text-primary flex items-center gap-x-2">
-                  {navItem.navIcon}
-                  {navItem.navText}
-                </li>
-              </Link>
-            ))}
-          </ul>
+          <div>
+            {path.pathname.startsWith("/cart/") ? (
+              ""
+            ) : (
+              <ul>
+                {nav.map((navItem) => (
+                  <Link
+                    key={navItem.navText}
+                    to={navItem.navLink}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      const section = document.querySelector(navItem.navLink);
+                      section?.scrollIntoView({ behavior: "smooth" });
+                    }}
+                  >
+                    <li className="text-secondary text-[18px] font-medium hover:underline hover:text-primary flex items-center gap-x-1">
+                      {navItem.navIcon}
+                      {navItem.navText}
+                    </li>
+                  </Link>
+                ))}
+              </ul>
+            )}
+          </div>
         </div>
       </div>
 
@@ -52,16 +60,20 @@ export const Navbar = () => {
               Lebene beans
             </h1>
           </Link>
-          <div
-            className="action"
-            onClick={(e) => {
-              e.preventDefault();
-              const section = document.querySelector("#menu");
-              section?.scrollIntoView({ behavior: "smooth" });
-            }}
-          >
-            <Button text="Order Here" type="Submit" />
-          </div>
+          {path.pathname.startsWith("/cart/") ? (
+            ""
+          ) : (
+            <div
+              className="action"
+              onClick={(e) => {
+                e.preventDefault();
+                const section = document.querySelector("/#menu");
+                section?.scrollIntoView({ behavior: "smooth" });
+              }}
+            >
+              <Button text="Order Here" type="Submit" />
+            </div>
+          )}
         </div>
       </motion.div>
     </>

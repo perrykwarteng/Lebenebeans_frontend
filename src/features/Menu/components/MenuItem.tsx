@@ -28,7 +28,7 @@ export const MenuItem = ({
         </h2>
 
         <div className="flex items-center justify-between md:flex-col md:items-start md:justify-start">
-          <p className="font-medium text-yellow-500 text-[20px] my-1">
+          <p className="font-medium text-yellow-500 text-[20px] mt-2.5">
             Ghs {price.toFixed(2)}
           </p>
           <div>
@@ -37,7 +37,7 @@ export const MenuItem = ({
                 onClick={() => {
                   addCart(id);
                 }}
-                className="flex items-center gap-x-1.5 bg-secondary rounded-xl px-4 py-2 mt-3 w-max text-white text-[18px]"
+                className="flex items-center gap-x-1.5 bg-secondary rounded-xl px-3.5 py-2 mt-3 w-max text-white text-[18px]"
               >
                 <MdAddShoppingCart className=" text-white " />
                 <Button
@@ -55,7 +55,7 @@ export const MenuItem = ({
                         ? ""
                         : ""
                   }
-                  className="flex items-center gap-x-1.5 bg-secondary rounded-xl px-4 py-2 mt-3 text-white text-[18px] relative"
+                  className="flex items-center gap-x-1.5 bg-secondary rounded-xl px-3.5 py-2 mt-3 text-white text-[18px] relative"
                 >
                   <MdAddShoppingCart className="text-[18px] text-white " />
                   <Button text="Order Here" Stlye="bg-transparent text-white" />
