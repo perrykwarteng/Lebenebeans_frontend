@@ -33,7 +33,7 @@ export const CartPage = () => {
   const [location, setLocation] = useState("");
   const [note, setNote] = useState("");
 
-  const getPromo = JSON.parse(localStorage.getItem("promo") || "null");
+  const getPromo = JSON.parse(localStorage.getItem("promo") ?? "null");
   const promo = getPromo?.state?.promo;
   const closeOrder = JSON.parse(localStorage.getItem("closeStatus") ?? "null");
 
