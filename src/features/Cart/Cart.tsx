@@ -35,7 +35,7 @@ export const CartPage = () => {
 
   const getPromo = JSON.parse(localStorage.getItem("promo") || "null");
   const promo = getPromo?.state?.promo;
-  const closeOrder = JSON.parse(localStorage.getItem("closeStatus") || "null");
+  const closeOrder = JSON.parse(localStorage.getItem("closeStatus") ?? "null");
 
   const { data } = useQuery({
     queryKey: ["locations"],
