@@ -10,7 +10,7 @@ export const FullPageLoader = () => {
           WebkitMaskComposite: "source-out",
           maskComposite: "subtract",
         }}
-      />
+      ></div>
     </div>
   );
 };
