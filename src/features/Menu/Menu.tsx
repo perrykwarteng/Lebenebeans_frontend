@@ -14,6 +14,8 @@ export const Menu = () => {
     queryFn: getCloseStatus,
   });
 
+  localStorage.setItem("closeStatus", JSON.stringify(data?.closeOrders));
+
   useEffect(() => {
     refetch();
   }, [refetch]);
@@ -80,7 +82,7 @@ export const Menu = () => {
                     ? true
                     : null
               }
-              addCart={() => {}}
+              addToCart={() => {}}
             />
           ))}
         </div>

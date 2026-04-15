@@ -1,6 +1,8 @@
 import { MdAddShoppingCart } from "react-icons/md";
 import { Button } from "../../../components/ui/Button";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { menuData } from "../../../data/menuData";
+import { useCartStore } from "../../../store/useCartStore";
 
 type MenuItemType = {
   name: string;
@@ -9,7 +11,7 @@ type MenuItemType = {
   id: number;
   isAddProject?: boolean;
   lockButton?: boolean | null;
-  addCart: (id: number) => void;
+  addToCart: (id: number) => void;
 };
 export const MenuItem = ({
   name,
@@ -17,9 +19,22 @@ export const MenuItem = ({
   image,
   id,
   isAddProject,
-  addCart,
+  addToCart,
   lockButton,
 }: MenuItemType) => {
+  const { addCart } = useCartStore();
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    const product = menuData.find((p) => p.id === Number(id));
+
+    if (!product) return;
+
+    if (!lockButton) {
+      addCart(product);
+      navigate(`/cart/${id}`);
+    }
+  };
   return (
     <div className="bg-white border-2 border-dashed border-primary p-3.5 flex flex-col md:flex-row items-center gap-4 rounded-2xl">
       <div className="md:w-3/5 w-full order-2 md:order-1">
@@ -35,7 +50,7 @@ export const MenuItem = ({
             {isAddProject ? (
               <div
                 onClick={() => {
-                  addCart(id);
+                  addToCart(id);
                 }}
                 className="flex items-center gap-x-1.5 bg-secondary rounded-xl px-3.5 py-2 mt-3 w-max text-white text-[18px]"
               >
@@ -47,19 +62,13 @@ export const MenuItem = ({
               </div>
             ) : (
               <div className="">
-                <Link
-                  to={
-                    lockButton === false
-                      ? `/cart/${id}`
-                      : lockButton === true
-                        ? ""
-                        : ""
-                  }
+                <div
                   className="flex items-center gap-x-1.5 bg-secondary rounded-xl px-3.5 py-2 mt-3 text-white text-[18px] relative"
+                  onClick={handleClick}
                 >
                   <MdAddShoppingCart className="text-[18px] text-white " />
                   <Button text="Order Here" Stlye="bg-transparent text-white" />
-                </Link>
+                </div>
               </div>
             )}
           </div>
