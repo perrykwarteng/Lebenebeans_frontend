@@ -42,13 +42,13 @@ function App() {
       setPromoError("");
       setIsPromo(true);
 
-      setTimeout(() => setIsPromo(false), 7000);
+      setTimeout(() => setIsPromo(false), 5000);
     } else if (data.status === 400) {
       setIsPromo(true);
       clearPromo();
       setPromoError(data.data.message);
 
-      setTimeout(() => setIsPromo(false), 7000);
+      setTimeout(() => setIsPromo(false), 5000);
     } else {
       setPromoError("");
       setIsPromo(false);
