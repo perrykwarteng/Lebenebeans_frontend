@@ -56,7 +56,7 @@ function App() {
     }
   }, [code, type, data]);
 
-  const getPromo = JSON.parse(localStorage.getItem("promo") || "");
+  const getPromo = JSON.parse(localStorage.getItem("promo") ?? "null");
   const promo = getPromo?.state?.promo;
 
   return (
