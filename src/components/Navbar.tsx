@@ -94,7 +94,7 @@ export const Navbar = () => {
       initial={{ opacity: 0, y: -40 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
-      className="w-full bg-bg1  rounded-xl px-4 py-3 md:px-6"
+      className={`w-full rounded-xl px-4 py-3 md:px-6 ${location.pathname.match("/cart/") ? "bg-white" : "bg-bg1 "}`}
     >
       <div className="flex items-center justify-between">
         <Link className="flex items-center gap-x-2" to="/">
