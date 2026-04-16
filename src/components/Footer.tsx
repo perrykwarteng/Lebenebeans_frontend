@@ -1,11 +1,11 @@
-import { FaFacebookF, FaInstagram, FaTwitter, FaTiktok } from "react-icons/fa";
+import { FaInstagram, FaTiktok } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Logo from "../assets/images/salad.png";
 
 export const Footer = () => {
   return (
     <footer className="bg-primary text-white mt-10 py-2">
-      <div className="w-full md:px-5 py-2 flex flex-col justify-center md:flex-row items-center md:justify-between  gap-4">
+      <div className="w-full md:px-12 py-2 flex flex-col justify-center md:flex-row items-center md:justify-between  gap-4">
         <div className="">
           <Link className="flex items-center justify-center gap-x-2" to="/">
             <img className="w-12" src={Logo} alt="Main Logo" />
@@ -18,9 +18,6 @@ export const Footer = () => {
         </div>
 
         <div className="flex justify-center md:justify-end gap-5 text-white text-xl">
-          <Link to="#" aria-label="Facebook" className="hover:text-secondary">
-            <FaFacebookF />
-          </Link>
           <Link
             to="https://www.instagram.com/lebenebeans/"
             target="_blank"
@@ -29,10 +26,12 @@ export const Footer = () => {
           >
             <FaInstagram />
           </Link>
-          <Link to="#" aria-label="Twitter" className="hover:text-secondary">
-            <FaTwitter />
-          </Link>
-          <Link to="#" aria-label="TikTok" className="hover:text-secondary">
+          <Link
+            to="https://www.tiktok.com/@lebene.beans?_r=1&_t=ZS-95aeG4OigWD"
+            target="_blank"
+            aria-label="TikTok"
+            className="hover:text-secondary"
+          >
             <FaTiktok />
           </Link>
         </div>
