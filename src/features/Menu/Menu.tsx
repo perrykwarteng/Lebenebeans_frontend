@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { menuData } from "../../data/menuData";
-import { MenuFilterSearch } from "../Menu/components/MenuFilterSearch";
 import { MenuItem } from "../Menu/components/MenuItem";
 import type { Cart } from "../../store/useCartStore";
 import { motion } from "framer-motion";
@@ -20,8 +19,8 @@ export const Menu = () => {
     refetch();
   }, [refetch]);
 
-  const [searchText, setSearchText] = useState("");
-  const [filterText, setFilterText] = useState("");
+  const [searchText] = useState("");
+  const [filterText, setFilterText] = useState("All Foods");
   const [searchData, setSearchData] = useState<Cart[]>([]);
 
   useEffect(() => {
@@ -44,6 +43,8 @@ export const Menu = () => {
     setSearchData(filtered);
   }, [searchText, filterText, data]);
 
+  const filterOptions = ["All Foods", "Beans", "Rice", "Banku"];
+
   return (
     <>
       <motion.div
@@ -58,14 +59,19 @@ export const Menu = () => {
             Explore Our Menu
           </h2>
           <div className="w-15 h-1 bg-primary"></div>
-          <MenuFilterSearch
-            menuSearchValue={searchText}
-            selectValue={filterText}
-            handelMenuSearch={(e) => {
-              setSearchText(e.target.value);
-            }}
-            handleSelectValue={setFilterText}
-          />
+          <div className="py-4 flex items-center justify-center flex-wrap gap-x-5 gap-y-2 my-3">
+            {filterOptions.map((item) => (
+              <div
+                key={item}
+                className={` p-2 px-5 rounded-lg cursor-pointer ${filterText === item ? "bg-primary text-secondary font-medium" : "bg-gray-300 text-secondary hover:bg-gray-200"}`}
+                onClick={() => {
+                  setFilterText(item);
+                }}
+              >
+                {item}
+              </div>
+            ))}
+          </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {(searchData.length > 0 ? searchData : menuData).map((item) => (
