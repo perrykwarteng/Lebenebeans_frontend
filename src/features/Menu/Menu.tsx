@@ -20,7 +20,7 @@ export const Menu = () => {
   }, [refetch]);
 
   const [searchText] = useState("");
-  const [filterText, setFilterText] = useState("All Foods");
+  const [filterText, setFilterText] = useState("All");
   const [searchData, setSearchData] = useState<Cart[]>([]);
 
   let filtered = menuData.filter(
@@ -42,7 +42,7 @@ export const Menu = () => {
     setSearchData(filtered);
   }, [searchText, filterText, data]);
 
-  const filterOptions = ["All Foods", "Beans", "Rice", "Banku"];
+  const filterOptions = ["All", "Beans", "Rice", "Banku"];
 
   return (
     <>
@@ -58,11 +58,11 @@ export const Menu = () => {
             Explore Our Menu
           </h2>
           <div className="w-15 h-1 bg-primary"></div>
-          <div className="py-4 flex items-center justify-center flex-wrap gap-x-5 gap-y-2 my-3">
+          <div className="py-4 flex items-center justify-center flex-wrap gap-x-3 md:gap-x-5 gap-y-2 my-3">
             {filterOptions.map((item) => (
               <div
                 key={item}
-                className={` p-2 px-5 rounded-lg cursor-pointer ${filterText === item ? "bg-primary text-secondary font-medium" : "bg-gray-300 text-secondary hover:bg-gray-200"}`}
+                className={` p-1.5 px-3.5 md:p-2 md:px-5 rounded-lg cursor-pointer ${filterText === item ? "bg-primary text-secondary font-medium" : "bg-gray-300 text-secondary hover:bg-gray-200"}`}
                 onClick={() => {
                   setFilterText(item);
                 }}

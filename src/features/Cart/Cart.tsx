@@ -180,10 +180,7 @@ export const CartPage = () => {
                     onClick={() => setOpen(true)}
                   >
                     <TbShoppingBagPlus />
-                    <Button
-                      text="Add Another Food or Extras"
-                      Stlye="bg-transparent"
-                    />
+                    <Button text="Add Food or Extras" Stlye="bg-transparent" />
                   </div>
                 </div>
               ) : (
@@ -213,16 +210,15 @@ export const CartPage = () => {
                   onClick={() => setOpen(true)}
                 >
                   <TbShoppingBagPlus />
-                  <Button
-                    text="Add Another Food or Extras"
-                    Stlye="bg-transparent"
-                  />
+                  <Button text="Add Food or Extras" Stlye="bg-transparent" />
                 </div>
               </div>
             </div>
 
             <div className="border border-primary bg-white rounded-[5px] p-5 w-full md:w-2/5">
-              <h2 className="text-primary text-[30px]">Order Info</h2>
+              <h2 className="text-primary text-[30px] text-center">
+                Order Info
+              </h2>
               <div className="h-0.5 w-full bg-gray-300"></div>
               <div className="my-1.5">
                 <InputField
@@ -364,10 +360,11 @@ export const CartPage = () => {
           }}
           size="lg"
         >
-          <div className="py-4 flex items-center justify-center flex-wrap gap-x-3 gap-y-2">
+          <div className="py-4 flex items-center justify-center flex-wrap gap-x-3 md:gap-x-5 gap-y-2 my-3">
             {filterOptions.map((item) => (
               <div
-                className={` p-2 px-5 rounded-lg cursor-pointer ${filterText === item ? "bg-secondary text-white" : "bg-gray-300 text-secondary"}`}
+                key={item}
+                className={` p-1.5 px-3.5 md:p-2 md:px-5 rounded-lg cursor-pointer ${filterText === item ? "bg-primary text-secondary font-medium" : "bg-gray-300 text-secondary hover:bg-gray-200"}`}
                 onClick={() => {
                   setFilterText(item);
                 }}
