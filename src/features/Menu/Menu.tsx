@@ -26,6 +26,7 @@ export const Menu = () => {
   let filtered = menuData.filter(
     (item) => !item.name?.toLowerCase().includes("extra"),
   );
+
   useEffect(() => {
     if (searchText.trim()) {
       filtered = filtered.filter((item) =>
@@ -33,15 +34,35 @@ export const Menu = () => {
       );
     }
 
-    if (filterText.trim()) {
+    const keyword = filterText.toLowerCase();
+
+    if (filterText.trim() && filterText !== "All Foods") {
       filtered = filtered.filter((item) =>
-        item.name.toLowerCase().includes(filterText.toLowerCase()),
+        item.name.toLowerCase().includes(keyword),
       );
+
+      filtered = filtered.sort((a, b) => {
+        const aName = a.name.toLowerCase();
+        const bName = b.name.toLowerCase();
+
+        const score = (name: string) => {
+          let s = 0;
+
+          if (name.includes(keyword)) s += 1;
+          if (name.includes("rice with stew")) s += 5;
+          if (name.includes("rice and stew")) s += 5;
+          if (name.includes("rice and beef")) s += 5;
+          if (name.startsWith(keyword)) s += 2;
+
+          return s;
+        };
+
+        return score(bName) - score(aName);
+      });
     }
 
     setSearchData(filtered);
-  }, [searchText, filterText, data]);
-
+  }, [searchText, filterText, menuData]);
   const filterOptions = ["All Foods", "Beans", "Rice", "Banku"];
 
   return (
