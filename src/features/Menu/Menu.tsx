@@ -20,7 +20,7 @@ export const Menu = () => {
   }, [refetch]);
 
   const [searchText] = useState("");
-  const [filterText, setFilterText] = useState("All");
+  const [filterText, setFilterText] = useState("All Foods");
   const [searchData, setSearchData] = useState<Cart[]>([]);
 
   let filtered = menuData.filter(
@@ -42,7 +42,7 @@ export const Menu = () => {
     setSearchData(filtered);
   }, [searchText, filterText, data]);
 
-  const filterOptions = ["All", "Beans", "Rice", "Banku"];
+  const filterOptions = ["All Foods", "Beans", "Rice", "Banku"];
 
   return (
     <>
