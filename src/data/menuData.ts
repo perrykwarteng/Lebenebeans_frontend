@@ -188,7 +188,7 @@ export const menuData = [
   },
   {
     id: 675309,
-    name: "Banku with okro stew (crab, Wele & Meat)",
+    name: "Banku with okro stew (crab, Wele,fish & Meat)",
     description: "Banku with okro stew, crab, wele & meat.",
     price: 120.0,
     image: Food20,
