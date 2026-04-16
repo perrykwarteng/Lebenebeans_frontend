@@ -37,20 +37,20 @@ export const CartItem = ({
       <div className="flex flex-col items-center gap-3 md:gap-4">
         <div className="flex items-center gap-3">
           <IoIosRemoveCircle
-            className="text-secondary text-2xl hover:text-primary transition-colors cursor-pointer"
+            className="text-secondary text-2xl transition-colors cursor-pointer"
             onClick={() => {
               decreaseQty(id);
             }}
           />
           <span className="text-lg font-medium">{quantity}</span>
           <IoIosAddCircle
-            className="text-secondary text-2xl hover:text-primary transition-colors cursor-pointer"
+            className="text-secondary text-2xl transition-colors cursor-pointer"
             onClick={() => increaseQty(id)}
           />
         </div>
 
         <div
-          className="flex items-center gap-2 text-red-400 hover:text-red-600 cursor-pointer transition-colors"
+          className="flex items-center gap-2 text-red-500 cursor-pointer transition-colors"
           onClick={() => removeItem(id)}
         >
           <MdOutlineDeleteForever className="text-2xl" />
