@@ -21,10 +21,10 @@ export const Banner = () => {
         <p className="text-lg md:text-xl font-medium">
           Call us on:
           <Link
-            to="tel:+1234567890"
+            to="tel:+233 539 941 936"
             className="text-white hover:underline hover:text-primary ms-1"
           >
-            +233 539 941 936
+            (+233) 539 941 936
           </Link>
         </p>
         <p className="text-lg md:text-xl font-medium">Locate us at: Pig Farm</p>
