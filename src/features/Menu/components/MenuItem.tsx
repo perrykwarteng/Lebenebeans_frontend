@@ -42,8 +42,8 @@ export const MenuItem = ({
           {name}
         </h2>
 
-        <div className="flex items-center justify-between md:flex-col md:items-start md:justify-start">
-          <p className="font-medium text-yellow-500 text-[20px] mt-2.5">
+        <div className="flex items-center gap-x-2 justify-between md:flex-col md:items-start md:justify-start">
+          <p className="font-medium text-yellow-500 text-[17px] mt-2.5">
             Ghs {price.toFixed(2)}
           </p>
           <div>
@@ -63,7 +63,7 @@ export const MenuItem = ({
             ) : (
               <div className="">
                 <div
-                  className="flex items-center gap-x-1.5 bg-secondary rounded-xl px-3.5 py-2 mt-3 text-white text-[18px] relative"
+                  className="flex items-center gap-x-1.5 bg-secondary rounded-xl px-3 py-2 mt-3 text-white text-[17px] relative"
                   onClick={handleClick}
                 >
                   <MdAddShoppingCart className="text-[18px] text-white " />

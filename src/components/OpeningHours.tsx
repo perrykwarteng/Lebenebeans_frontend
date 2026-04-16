@@ -14,7 +14,7 @@ export const OpeningHours = () => {
           </div>
           <div className="w-full h-55 md:w-120 md:h-60 rounded-xl bg-primary p-6 flex items-center">
             <div>
-              <h2 className="text-[40px] font-bold text-secondary">
+              <h2 className="text-[30px] md:text-[40px] font-bold text-secondary">
                 Work Hours
               </h2>
               <div className="h-1.5 w-15 bg-white"></div>
@@ -23,7 +23,7 @@ export const OpeningHours = () => {
                   <span className="font-medium">Days:</span> Monday to Saturday
                 </li>
                 <li className="text-[20px] text-secondary">
-                  <span className="font-medium">Time:</span> 8:00am to 4pm
+                  <span className="font-medium">Time:</span> 8:00am to 4:00pm
                 </li>
               </ul>
             </div>
