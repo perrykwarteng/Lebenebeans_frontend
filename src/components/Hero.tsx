@@ -26,7 +26,7 @@ export const Hero = () => {
             </div>
           </div>
         )}
-        <div className="flex flex-col md:flex-row items-center gap-10">
+        <div className="flex flex-col md:flex-row items-center gap-10  mt-2 md:mt-8">
           <motion.div
             className="flex-1 text-center md:text-left"
             initial={{ opacity: 0, x: -40 }}
