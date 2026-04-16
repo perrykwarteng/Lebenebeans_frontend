@@ -23,11 +23,10 @@ export const Menu = () => {
   const [filterText, setFilterText] = useState("All Foods");
   const [searchData, setSearchData] = useState<Cart[]>([]);
 
+  let filtered = menuData.filter(
+    (item) => !item.name?.toLowerCase().includes("extra"),
+  );
   useEffect(() => {
-    let filtered = menuData.filter(
-      (item) => !item.name?.toLowerCase().includes("extra"),
-    );
-
     if (searchText.trim()) {
       filtered = filtered.filter((item) =>
         item.name.toLowerCase().includes(searchText.toLowerCase()),
@@ -74,7 +73,7 @@ export const Menu = () => {
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {(searchData.length > 0 ? searchData : menuData).map((item) => (
+          {(searchData.length > 0 ? searchData : filtered).map((item) => (
             <MenuItem
               key={item.id}
               name={item.name}
