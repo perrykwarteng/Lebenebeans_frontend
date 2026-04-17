@@ -220,8 +220,7 @@ export const Orders = () => {
         onClose={() => setDeliveredModalOpen(false)}
       >
         <p className="mb-4">
-          Are you sure you want to mark this order as <strong>delivered</strong>
-          ?
+          Are you sure you want to mark this order as delivered?
         </p>
         <div className="flex justify-end gap-3">
           <button
