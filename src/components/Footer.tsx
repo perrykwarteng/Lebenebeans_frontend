@@ -34,14 +34,6 @@ export const Footer = () => {
           >
             <FaTiktok />
           </Link>
-          <Link
-            to="https://www.tiktok.com/@lebene.beans?_r=1&_t=ZS-95aeG4OigWD"
-            target="_blank"
-            aria-label="TikTok"
-            className="hover:text-secondary"
-          >
-            <FaTiktok />
-          </Link>
         </div>
       </div>
     </footer>
