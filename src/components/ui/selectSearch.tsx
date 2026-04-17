@@ -19,7 +19,7 @@ export const SelectSearch = ({
     setOpenOptions((prev) => !prev);
   };
 
-  const filteredOptions = options.filter((option) =>
+  const filteredOptions = (options ?? []).filter((option) =>
     option.toLowerCase().includes(searchTerm.toLowerCase()),
   );
 

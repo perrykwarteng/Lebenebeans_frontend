@@ -43,7 +43,7 @@ export const CartPage = () => {
     queryFn: getLocations,
   });
 
-  const locationArr = data?.map((loc: LocationType) => loc.name);
+  const locationArr = (data ?? []).map((loc: LocationType) => loc.name);
 
   useEffect(() => {
     window.scrollTo({
@@ -59,7 +59,7 @@ export const CartPage = () => {
     }
   }, [closeOrder, path.pathname, closeOrder]);
 
-  const { mutate, isPending } = useMutation({
+  const { mutate, isPending, isSuccess } = useMutation({
     mutationFn: createOrder,
     onSuccess: () => {
       toast.success("Created Order Successfully");
@@ -135,8 +135,11 @@ export const CartPage = () => {
     setNumber("");
     setDeliveryType("");
     setLocation("");
-    clearCart();
     clearPromo();
+
+    if (isSuccess) {
+      clearCart();
+    }
   };
 
   const handelAddCartModal = async (id: number) => {
