@@ -261,7 +261,9 @@ export const VerifyPayment = () => {
 
               <div className="flex justify-between pt-2">
                 <p className="text-gray-700 font-medium">Total:</p>
-                <p className="font-bold">{formatCurrency(payment.amount)}</p>
+                <p className="font-bold">
+                  {formatCurrency(payment.amount / 100)}
+                </p>
               </div>
             </div>
 
