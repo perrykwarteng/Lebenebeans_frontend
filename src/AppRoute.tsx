@@ -7,6 +7,9 @@ import { Dashboard } from "./features/Dashboard/pages/Dashboard";
 import { Orders } from "./features/Dashboard/pages/Orders";
 import { Delivered } from "./features/Dashboard/pages/Delivered";
 import { Location } from "./features/Dashboard/pages/Location";
+import { BulkOrder } from "./features/BulkOrder/BulkOrder";
+import OrderHistory from "./features/History/OrdersHistory";
+import { NotFound } from "./components/NotFound";
 
 export const routes = createBrowserRouter([
   {
@@ -16,6 +19,14 @@ export const routes = createBrowserRouter([
   {
     path: "/cart/:id",
     element: <CartPage />,
+  },
+  {
+    path: "/bulkOrder",
+    element: <BulkOrder />,
+  },
+  {
+    path: "/history",
+    element: <OrderHistory />,
   },
   {
     path: "/login",
@@ -40,5 +51,9 @@ export const routes = createBrowserRouter([
   {
     path: "/admin/location",
     element: <Location />,
+  },
+  {
+    path: "*",
+    element: <NotFound />,
   },
 ]);
