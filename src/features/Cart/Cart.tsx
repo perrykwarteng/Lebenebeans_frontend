@@ -18,6 +18,7 @@ import { SelectSearch } from "../../components/ui/selectSearch";
 import { usePromoStore } from "../../store/usePromoStore";
 import { useLocation, useNavigate } from "react-router-dom";
 import { safeParse } from "../../utils/saveParse";
+import { useGuestStore } from "../../store/useGuestUser";
 
 export const CartPage = () => {
   const [open, setOpen] = useState(false);
@@ -26,10 +27,12 @@ export const CartPage = () => {
   const menuDatas = menuData;
   const { item, addCart, clearCart, removeCart, increaseQty, decreaseQty } =
     useCartStore();
+
+  const { guest, setGuest } = useGuestStore();
   const { clearPromo } = usePromoStore();
 
-  const [name, setName] = useState("");
-  const [number, setNumber] = useState("");
+  const [name, setName] = useState(guest.name);
+  const [number, setNumber] = useState(guest.phone);
   const [deliveryType, setDeliveryType] = useState("");
   const [location, setLocation] = useState("");
   const [note, setNote] = useState("");
@@ -129,19 +132,22 @@ export const CartPage = () => {
       promoId: getPromo.state.promo.id,
     };
     mutate(data);
+    setGuest({
+      name: data.name,
+      phone: data.number,
+    });
 
     setName("");
     setNote("");
     setNumber("");
     setDeliveryType("");
     setLocation("");
-    clearPromo();
-
-    if (isSuccess) {
-      clearCart();
-    }
   };
 
+  if (isSuccess) {
+    clearCart();
+    clearPromo();
+  }
   const handelAddCartModal = async (id: number) => {
     const product = menuDatas.find((p) => p.id === Number(id));
     if (product) addCart(product);

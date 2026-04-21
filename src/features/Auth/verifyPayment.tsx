@@ -269,11 +269,11 @@ export const VerifyPayment = () => {
 
             <div className="w-full flex items-center gap-x-4 mt-4">
               <Link
-                to="/"
+                to="/history"
                 className="w-full flex items-center justify-center bg-primary text-white px-3 md:px-5 py-2 rounded-xl gap-x-2"
               >
                 <IoMdHome />
-                <Button text="Home" Stlye="bg-transparent" />
+                <Button text="Order History" Stlye="bg-transparent" />
               </Link>
               <div
                 className="bg-green-600 text-white text-center flex items-center justify-center gap-x-2 px-3 md:px-5 py-2 rounded-xl w-full"
