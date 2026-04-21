@@ -9,6 +9,7 @@ lerna-debug.log*
 
 # env
 .env
+.github
 
 node_modules
 dist
