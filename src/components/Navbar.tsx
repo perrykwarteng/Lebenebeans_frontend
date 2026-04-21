@@ -17,7 +17,7 @@ export const Navbar = () => {
     >
       <Link className="flex items-center gap-x-2" to="/">
         <img className="w-10 md:w-12" src={Logo} alt="Main Logo" />
-        <h1 className="text-secondary text-lg md:text-xl font-">
+        <h1 className="text-secondary text-lg md:text-xl font-semibold">
           Lebene beans
         </h1>
       </Link>
@@ -56,13 +56,15 @@ export const Navbar = () => {
               if (path.pathname === "/" && navItem.navText === "Home") {
                 return false;
               }
-              if (path.pathname.startsWith("/cart/")) {
+              if (
+                path.pathname.startsWith("/cart/") ||
+                path.pathname.startsWith("/bulkOrder") ||
+                path.pathname.startsWith("/history") ||
+                path.pathname.startsWith("/")
+              ) {
                 return navItem.navText === "Home";
               }
 
-              if (path.pathname.startsWith("/bulkOrder")) {
-                return navItem.navText === "Home";
-              }
               return true;
             })
             .map((navItem) => (

@@ -37,7 +37,7 @@ export const MenuItem = ({
   };
   return (
     <div className="bg-white border border-secondary/15 p-4 flex flex-col gap-4 rounded-2xl md:w-72 transition-all duration-300">
-      <div className="rounded-xl w-full h-44 overflow-hidden bg-gray-50 flex items-center justify-center">
+      <div className="rounded-xl w-full h-50 overflow-hidden bg-gray-50 flex items-center justify-center">
         <img
           src={image}
           alt="Food Image"
