@@ -1,7 +1,7 @@
 import { api } from "../../lib/axios";
 import { AxiosError } from "axios";
 
-type ApiError = {
+export type ApiError = {
   message: string;
   code?: string;
   status?: number;

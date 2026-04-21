@@ -17,6 +17,7 @@ export interface CartType {
   clearCart: () => void;
   increaseQty: (id: number) => void;
   decreaseQty: (id: number) => void;
+  changeQty: (id: number, value: number) => void;
 }
 
 export const useCartStore = create<CartType>()(
@@ -61,6 +62,15 @@ export const useCartStore = create<CartType>()(
           );
           return { item: updateItems };
         }),
+
+      changeQty: (id, value) =>
+        set((state) => ({
+          item: state.item.map((i) =>
+            i.id === id
+              ? { ...i, quantity: Math.max(0, Number(value) || 1) }
+              : i,
+          ),
+        })),
 
       clearCart: () => set({ item: [] }),
     }),

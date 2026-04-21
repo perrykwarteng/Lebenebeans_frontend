@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 
 interface InputType {
-  label: string;
+  label?: string;
   name: string;
   type?: string;
   placeholder?: string;

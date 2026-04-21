@@ -1,16 +1,16 @@
 import { IoIosAddCircle, IoIosRemoveCircle } from "react-icons/io";
 import { MdOutlineDeleteForever } from "react-icons/md";
 
-type CartItem = {
+export interface CartItem {
   id: number;
   name: string;
   price: number;
   quantity: number;
   image?: string;
-  removeItem: (id: number) => void;
-  increaseQty: (id: number) => void;
-  decreaseQty: (id: number) => void;
-};
+  removeItem?: (id: number) => void;
+  increaseQty?: (id: number) => void;
+  decreaseQty?: (id: number) => void;
+}
 
 export const CartItem = ({
   id,
@@ -39,19 +39,19 @@ export const CartItem = ({
           <IoIosRemoveCircle
             className="text-secondary text-2xl transition-colors cursor-pointer"
             onClick={() => {
-              decreaseQty(id);
+              decreaseQty!(id);
             }}
           />
           <span className="text-lg font-medium">{quantity}</span>
           <IoIosAddCircle
             className="text-secondary text-2xl transition-colors cursor-pointer"
-            onClick={() => increaseQty(id)}
+            onClick={() => increaseQty!(id)}
           />
         </div>
 
         <div
           className="flex items-center gap-2 text-red-500 cursor-pointer transition-colors"
-          onClick={() => removeItem(id)}
+          onClick={() => removeItem!(id)}
         >
           <MdOutlineDeleteForever className="text-2xl" />
           <span className="text-sm font-medium">Remove</span>
