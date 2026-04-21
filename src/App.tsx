@@ -1,14 +1,13 @@
 import { useSearchParams } from "react-router-dom";
 import { Banner } from "./components/Banner";
-import { Hero } from "./components/Hero";
 import { MainLayout } from "./components/layouts/MainLayout";
 import { OpeningHours } from "./components/OpeningHours";
-import { Menu } from "./features/Menu/Menu";
 import { usePromoStore } from "./store/usePromoStore";
 import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getPromotion } from "./features/Cart/services";
 import { formatDate } from "./utils/formatDateTime";
+import { HeroMenu } from "./components/Hero";
 
 function App() {
   const [getParams] = useSearchParams();
@@ -111,8 +110,7 @@ function App() {
           </div>
         )}
 
-        <Hero />
-        <Menu />
+        <HeroMenu />
         <OpeningHours />
         <Banner />
       </MainLayout>

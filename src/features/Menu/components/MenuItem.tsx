@@ -36,16 +36,25 @@ export const MenuItem = ({
     }
   };
   return (
-    <div className="bg-white border-2 border-dashed border-primary p-3.5 flex flex-col md:flex-row items-center gap-4 rounded-2xl">
-      <div className="md:w-3/5 w-full order-2 md:order-1">
-        <h2 className="font-semibold text-secondary text-[22px] my-1">
+    <div className="bg-white border border-secondary/15 p-4 flex flex-col gap-4 rounded-2xl md:w-72 transition-all duration-300">
+      <div className="rounded-xl w-full h-44 overflow-hidden bg-gray-50 flex items-center justify-center">
+        <img
+          src={image}
+          alt="Food Image"
+          className="w-full h-full object-cover"
+        />
+      </div>
+
+      <div>
+        <h2 className="font-semibold text-gray-800 text-[17px] line-clamp-2">
           {name}
         </h2>
 
-        <div className="flex items-center gap-x-2 justify-between md:flex-col md:items-start md:justify-start">
-          <p className="font-medium text-yellow-500 text-[17px] mt-2.5">
-            Ghs {price.toFixed(2)}
+        <div className="flex items-center justify-between">
+          <p className="font-semibold text-[16px] text-primary mt-2">
+            GHS {price.toFixed(2)}
           </p>
+
           <div>
             {isAddProject ? (
               <div
@@ -73,16 +82,6 @@ export const MenuItem = ({
             )}
           </div>
         </div>
-      </div>
-
-      <div className="md:w-2/4 w-full order-1 md:order-2">
-        {image === "" ? null : (
-          <img
-            className="w-full h-auto rounded-2xl object-contain"
-            src={image}
-            alt="food image"
-          />
-        )}
       </div>
     </div>
   );

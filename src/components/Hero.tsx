@@ -1,12 +1,17 @@
-import HeroImg from "../assets/images/hero.png";
-import { motion } from "framer-motion";
-
-import { useQuery } from "@tanstack/react-query";
-import { useEffect } from "react";
+import { motion, useScroll, useTransform, MotionValue } from "framer-motion";
+import { Menu } from "../features/Menu/Menu";
+import Background from "../assets/images/backgroundImage.jpg";
+import { useNavigate } from "react-router-dom";
+import { TbClipboardList, TbShoppingBagPlus } from "react-icons/tb";
+import { Button } from "./ui/Button";
 import { getCloseStatus } from "../features/Dashboard/service";
 import type { CloseType } from "../features/Dashboard/type";
+import { useQuery } from "@tanstack/react-query";
+import { useEffect } from "react";
 
-export const Hero = () => {
+export const HeroMenu = () => {
+  const nav = useNavigate();
+
   const { data, refetch } = useQuery<CloseType>({
     queryKey: ["closeStatus"],
     queryFn: getCloseStatus,
@@ -16,53 +21,103 @@ export const Hero = () => {
     refetch();
   }, [refetch]);
 
+  const { scrollY } = useScroll();
+  const bgScale: MotionValue<number> = useTransform(
+    scrollY,
+    [0, 800],
+    [1, 0.85],
+  );
+  const bgY: MotionValue<number> = useTransform(scrollY, [0, 700], [0, 50]);
+  const bgBlur = useTransform(scrollY, [0, 700], [0, 8]);
+
+  const midScale: MotionValue<number> = useTransform(
+    scrollY,
+    [0, 800],
+    [1, 0.75],
+  );
+  const midY: MotionValue<number> = useTransform(scrollY, [0, 700], [0, 100]);
+
+  const blurValue = useTransform(bgBlur, (b) => `blur(${b}px)`);
+
   return (
-    <section className="bg-white flex items-center">
-      <div className="w-full px-4 sm:px-6 md:px-12 lg:px-20 py-24 md:py-20">
-        {data?.closeOrders === "close" && (
-          <div className="marquee-container py-2 bg-secondary z-20 md:mt-4">
-            <div className="marquee text-white text-[23px]">
-              Sorry we have closed. Cannot place orders at this time Thank you!
-            </div>
-          </div>
-        )}
-        <div className="flex flex-col md:flex-row items-center gap-10  mt-2 md:mt-8">
+    <div className="bg-white -z-10">
+      <div className="h-[120vh] relative">
+        <div className="sticky top-0 min-h-screen overflow-hidden perspective-[1000px]">
           <motion.div
-            className="flex-1 text-center md:text-left"
-            initial={{ opacity: 0, x: -40 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7 }}
-          >
-            <h2
-              className="font-semibold leading-tight 
-              text-3xl sm:text-4xl md:text-5xl lg:text-6xl"
-            >
-              Order your <span className="text-primary">Favourite Foods </span>
-              at Lebene Beans
-            </h2>
-
-            <p
-              className="text-gray-500 mt-4 
-              text-base sm:text-lg md:text-xl"
-            >
-              From the comfort of your home.
-            </p>
+            style={{
+              scale: bgScale,
+              y: bgY,
+              filter: blurValue,
+              backgroundImage: `url(${Background})`,
+              backgroundSize: "cover",
+            }}
+            className="absolute inset-0 flex items-center justify-center bg-cover bg-center will-change-transform"
+          ></motion.div>
+          <motion.div className="absolute inset-0 mt-24">
+            {data?.closeOrders === "close" && (
+              <div className="marquee-container py-2 bg-secondary md:mt-4 z-60">
+                <div className="marquee text-white text-[23px]">
+                  Sorry we have closed. Cannot place orders at this time Thank
+                  you!
+                </div>
+              </div>
+            )}
           </motion.div>
-
           <motion.div
-            className="flex-1 flex justify-center"
-            initial={{ opacity: 0, x: 40 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7 }}
+            style={{
+              scale: midScale,
+              y: midY,
+            }}
+            className="absolute inset-0 flex items-center justify-center will-change-transform"
           >
-            <img
-              src={HeroImg}
-              alt="Hero"
-              className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg object-contain"
-            />
+            <div className="w-[90%] md:w-[65%] md:h-[60%] flex flex-col items-center justify-center">
+              <h2
+                className="font-semibold leading-tight text-center
+              text-3xl sm:text-4xl md:text-5xl lg:text-6xl"
+              >
+                Order your
+                <span className="text-primary italic ms-4">
+                  Favourite Foods{" "}
+                </span>
+                at Lebene Beans
+              </h2>
+
+              <p
+                className="text-secondary mt-2
+              text-base sm:text-lg md:text-xl"
+              >
+                From the comfort of your home.
+              </p>
+
+              <div className=" flex items-center gap-x-2 gap-y-2 mt-1.5">
+                <div
+                  className="flex gap-x-1 items-center bg-secondary text-white px-3 md:px-5 py-2 text-center rounded-xl"
+                  onClick={() => {
+                    nav("/bulkOrder");
+                  }}
+                >
+                  <TbShoppingBagPlus />
+                  <Button text="Bulk Orders" Stlye="bg-transparent" />
+                </div>
+
+                <div
+                  className="flex gap-x-1 items-center bg-secondary text-white px-5 py-2 text-center rounded-xl"
+                  onClick={() => {
+                    nav("/history");
+                  }}
+                >
+                  <TbClipboardList />
+                  <Button text="Past Orders" Stlye="bg-transparent" />
+                </div>
+              </div>
+            </div>
           </motion.div>
         </div>
       </div>
-    </section>
+
+      <div className="">
+        <Menu />
+      </div>
+    </div>
   );
 };

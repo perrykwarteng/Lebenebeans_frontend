@@ -4,7 +4,7 @@ export const OpeningHours = () => {
   return (
     <>
       <div>
-        <div className=" px-8 md:px-16 flex flex-col gap-y-5 md:flex-row md:gap-x-10 items-center justify-center py-15 mb-10">
+        <div className=" px-8 md:px-16 flex flex-col gap-y-5 md:flex-row md:gap-x-10 items-center justify-center mb-10">
           <div className="w-full h-55 md:w-120 md:h-60 rounded-xl">
             <img
               className="w-full h-full rounded-xl object-cover"

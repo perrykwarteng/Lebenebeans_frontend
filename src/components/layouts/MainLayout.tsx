@@ -4,11 +4,11 @@ import { Navbar } from "../Navbar";
 
 export const MainLayout = ({ children }: PropsWithChildren) => {
   return (
-    <div className="overflow-hidden">
-      <div className="absolute top-5 right-8 left-8">
+    <div className="min-h-screen overflow-hidden">
+      <div className="fixed top-5 right-6 left-6 md:right-8 md:left-8 z-50">
         <Navbar />
       </div>
-      {children}
+      <div>{children}</div>
       <Footer />
     </div>
   );

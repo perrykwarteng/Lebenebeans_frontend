@@ -71,7 +71,7 @@ export const Menu = () => {
         initial={{ opacity: 0, y: 0 }}
         animate={{ opacity: 1, y: -50 }}
         transition={{ duration: 0.8 }}
-        className="px-8 md:px-16 py-16 bg-bg1"
+        className="px-8 md:px-10 py-10 bg-bg1"
         id="menu"
       >
         <div className="flex flex-col items-center justify-center">
@@ -93,24 +93,26 @@ export const Menu = () => {
             ))}
           </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {(searchData.length > 0 ? searchData : filtered).map((item) => (
-            <MenuItem
-              key={item.id}
-              name={item.name}
-              price={item.price}
-              image={item.image}
-              id={item.id}
-              lockButton={
-                data?.closeOrders === "open"
-                  ? false
-                  : data?.closeOrders === "close"
-                    ? true
-                    : null
-              }
-              addToCart={() => {}}
-            />
-          ))}
+        <div className="flex items-center justify-center">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {(searchData.length > 0 ? searchData : filtered).map((item) => (
+              <MenuItem
+                key={item.id}
+                name={item.name}
+                price={item.price}
+                image={item.image}
+                id={item.id}
+                lockButton={
+                  data?.closeOrders === "open"
+                    ? false
+                    : data?.closeOrders === "close"
+                      ? true
+                      : null
+                }
+                addToCart={() => {}}
+              />
+            ))}
+          </div>
         </div>
       </motion.div>
     </>
