@@ -79,36 +79,7 @@ export const VerifyPayment = () => {
     const boxRight = W - 28;
     const boxW = boxRight - boxLeft;
 
-    const items = payment.metadata?.orderItems ?? [];
-    const itemHeight = 26;
-
     let rowY = y;
-
-    doc.setFont("helvetica", "bold");
-    doc.setFontSize(12);
-    doc.setTextColor(...darkText);
-    doc.text("Order Items", boxLeft + 12, rowY);
-
-    rowY += 20;
-
-    items.forEach((item: any) => {
-      const name = `${item.foodName} (x${item.quantity})`;
-      const price = `Ghc${Number(item.unitPrice) * Number(item.quantity)}`;
-
-      doc.setFont("helvetica", "normal");
-      doc.setFontSize(10);
-      doc.setTextColor(...mutedText);
-      doc.text(name, boxLeft + 12, rowY);
-
-      doc.setFont("helvetica", "bold");
-      doc.setTextColor(...darkText);
-      doc.text(price, boxRight - 12, rowY, { align: "right" });
-
-      rowY += itemHeight;
-    });
-
-    rowY += 10;
-
     const drawRow = (label: string, value: string) => {
       doc.setFontSize(11);
       doc.setFont("helvetica", "normal");

@@ -36,8 +36,8 @@ export const HeroMenu = () => {
 
   return (
     <div className="bg-white -z-10">
-      <div className="h-[90vh] md:h-[120vh] relative">
-        <div className="sticky top-0 h-[80vh] md:min-h-screen overflow-hidden perspective-[1000px]">
+      <div className="h-screen md:h-[120vh] relative">
+        <div className="sticky top-0 h-[90vh] md:min-h-screen overflow-hidden perspective-[1000px]">
           <motion.div
             style={{
               scale: bgScale,
@@ -63,7 +63,7 @@ export const HeroMenu = () => {
               scale: midScale,
               y: midY,
             }}
-            className="absolute inset-0 flex items-center justify-center will-change-transform -mt-48"
+            className="absolute inset-0 flex items-center justify-center will-change-transform -mt-52"
           >
             <div className="w-[90%] md:w-[65%] md:h-[60%] flex flex-col items-center justify-center">
               <h2
