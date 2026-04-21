@@ -1,17 +1,12 @@
 import { motion, useScroll, useTransform, MotionValue } from "framer-motion";
 import { Menu } from "../features/Menu/Menu";
 import Background from "../assets/images/backgroundImage.jpg";
-import { useNavigate } from "react-router-dom";
-import { TbClipboardList, TbShoppingBagPlus } from "react-icons/tb";
-import { Button } from "./ui/Button";
 import { getCloseStatus } from "../features/Dashboard/service";
 import type { CloseType } from "../features/Dashboard/type";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
 
 export const HeroMenu = () => {
-  const nav = useNavigate();
-
   const { data, refetch } = useQuery<CloseType>({
     queryKey: ["closeStatus"],
     queryFn: getCloseStatus,
