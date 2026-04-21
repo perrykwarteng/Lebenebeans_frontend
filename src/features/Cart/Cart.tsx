@@ -367,7 +367,7 @@ export const CartPage = () => {
           onClose={() => {
             setOpen(!open);
           }}
-          size="lg"
+          size="md"
         >
           <div className="py-4 flex items-center justify-center flex-wrap gap-x-3 md:gap-x-5 gap-y-2 my-3">
             {filterOptions.map((item) => (
@@ -383,20 +383,22 @@ export const CartPage = () => {
             ))}
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {filtered.map((item) => (
-              <MenuItem
-                key={item.id}
-                name={item.name}
-                price={item.price}
-                image={item.image}
-                id={item.id}
-                isAddProject
-                addToCart={() => {
-                  handelAddCartModal(item.id);
-                }}
-              />
-            ))}
+          <div className="flex item-center justify-center">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-4">
+              {filtered.map((item) => (
+                <MenuItem
+                  key={item.id}
+                  name={item.name}
+                  price={item.price}
+                  image={item.image}
+                  id={item.id}
+                  isAddProject
+                  addToCart={() => {
+                    handelAddCartModal(item.id);
+                  }}
+                />
+              ))}
+            </div>
           </div>
         </Modal>
       </MainLayout>

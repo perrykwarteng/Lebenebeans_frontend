@@ -41,8 +41,8 @@ export const HeroMenu = () => {
 
   return (
     <div className="bg-white -z-10">
-      <div className="h-[120vh] relative">
-        <div className="sticky top-0 min-h-screen overflow-hidden perspective-[1000px]">
+      <div className="h-[80vh] md:h-[120vh] relative">
+        <div className="sticky top-0 h-[70vh] md:min-h-screen overflow-hidden perspective-[1000px]">
           <motion.div
             style={{
               scale: bgScale,
@@ -68,7 +68,7 @@ export const HeroMenu = () => {
               scale: midScale,
               y: midY,
             }}
-            className="absolute inset-0 flex items-center justify-center will-change-transform"
+            className="absolute inset-0 flex items-center justify-center will-change-transform -mt-48"
           >
             <div className="w-[90%] md:w-[65%] md:h-[60%] flex flex-col items-center justify-center">
               <h2
@@ -88,28 +88,6 @@ export const HeroMenu = () => {
               >
                 From the comfort of your home.
               </p>
-
-              <div className=" flex items-center gap-x-2 gap-y-2 mt-1.5">
-                <div
-                  className="flex gap-x-1 items-center bg-secondary text-white px-3 md:px-5 py-2 text-center rounded-xl"
-                  onClick={() => {
-                    nav("/bulkOrder");
-                  }}
-                >
-                  <TbShoppingBagPlus />
-                  <Button text="Bulk Orders" Stlye="bg-transparent" />
-                </div>
-
-                <div
-                  className="flex gap-x-1 items-center bg-secondary text-white px-5 py-2 text-center rounded-xl"
-                  onClick={() => {
-                    nav("/history");
-                  }}
-                >
-                  <TbClipboardList />
-                  <Button text="Past Orders" Stlye="bg-transparent" />
-                </div>
-              </div>
             </div>
           </motion.div>
         </div>
