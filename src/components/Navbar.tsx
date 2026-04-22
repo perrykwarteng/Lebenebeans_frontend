@@ -63,7 +63,6 @@ export const Navbar = () => {
               ) {
                 return navItem.navText === "Home";
               }
-
               return true;
             })
             .map((navItem) => (
