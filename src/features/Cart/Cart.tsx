@@ -19,6 +19,7 @@ import { usePromoStore } from "../../store/usePromoStore";
 import { useLocation, useNavigate } from "react-router-dom";
 import { safeParse } from "../../utils/saveParse";
 import { useGuestStore } from "../../store/useGuestUser";
+import Background from "../../assets/images/bg.jpg";
 
 export const CartPage = () => {
   const [open, setOpen] = useState(false);
@@ -144,10 +145,6 @@ export const CartPage = () => {
     setLocation("");
   };
 
-  if (isSuccess) {
-    clearCart();
-    clearPromo();
-  }
   const handelAddCartModal = async (id: number) => {
     const product = menuDatas.find((p) => p.id === Number(id));
     if (product) addCart(product);
@@ -170,10 +167,22 @@ export const CartPage = () => {
     }
   }, [filterText]);
 
+  useEffect(() => {
+    if (isSuccess) {
+      clearPromo();
+      clearCart();
+    }
+  }, [isSuccess]);
   return (
     <>
       <MainLayout>
-        <div className="px-8 md:px-16 py-24 bg-bg1">
+        <div
+          className="px-8 md:px-16 py-24"
+          style={{
+            backgroundImage: `url(${Background})`,
+            backgroundSize: "cover",
+          }}
+        >
           <div className="flex flex-col items-center justify-center">
             <h2 className="text-[30px] font-medium">My Cart</h2>
             <div className="w-15 h-1 bg-primary"></div>

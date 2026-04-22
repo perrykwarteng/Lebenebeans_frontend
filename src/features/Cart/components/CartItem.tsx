@@ -2,14 +2,14 @@ import { IoIosAddCircle, IoIosRemoveCircle } from "react-icons/io";
 import { MdOutlineDeleteForever } from "react-icons/md";
 
 export interface CartItem {
-  id: number;
+  id: number | string;
   name: string;
   price: number;
   quantity: number;
   image?: string;
-  removeItem?: (id: number) => void;
-  increaseQty?: (id: number) => void;
-  decreaseQty?: (id: number) => void;
+  removeItem?: (id: number | string) => void;
+  increaseQty?: (id: number | string) => void;
+  decreaseQty?: (id: number | string) => void;
 }
 
 export const CartItem = ({

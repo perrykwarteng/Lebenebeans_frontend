@@ -7,8 +7,13 @@ import { formatDate } from "../../utils/formatDateTime";
 import { FullPageLoader } from "../../components/ui/fullPageLoader";
 import { formatCurrency } from "../../utils/currencyDecimal";
 import Empty from "../../assets/images/emptyState.svg";
+import { Button } from "../../components/ui/Button";
+import { useCartStore } from "../../store/useCartStore";
+import { useNavigate } from "react-router-dom";
 
 export default function OrderHistory() {
+  const { addCart, clearCart, changeQty } = useCartStore();
+  const nav = useNavigate();
   const { guest } = useGuestStore();
 
   const { data, isLoading } = useQuery({
@@ -119,15 +124,30 @@ export default function OrderHistory() {
                     </div>
 
                     <div className="border-t border-gray-200 pt-2.5 flex justify-between items-center">
-                      {order.orders.orderPaid ? (
-                        <p className="bg-green-600 text-white text-[14px] p-1 px-6 rounded-full">
-                          Paid
-                        </p>
-                      ) : (
-                        <p className="bg-red-600 text-white text-[14px] p-1 px-4 rounded-full">
-                          Not Paid
-                        </p>
-                      )}
+                      <div className="">
+                        <Button
+                          text="ReOrder"
+                          Stlye="bg-secondary px-4 py-1.5 text-white rounded-lg"
+                          action={() => {
+                            clearCart();
+                            const uuid = order.orders.id;
+                            for (const item of order.orderItems) {
+                              const cartId = crypto.randomUUID();
+                              addCart({
+                                id: cartId,
+                                name: item.foodName,
+                                quantity: item.quantity,
+                                description: "",
+                                price: item.unitPrice,
+                                image: "",
+                              });
+                              changeQty(cartId, item.quantity);
+                            }
+
+                            nav(`/cart/${uuid}`);
+                          }}
+                        />
+                      </div>
                       <span className="text-primary font-medium">
                         Total: {formatCurrency(order.orders.amount)}
                       </span>

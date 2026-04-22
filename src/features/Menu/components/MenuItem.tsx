@@ -8,10 +8,10 @@ type MenuItemType = {
   name: string;
   price: number;
   image?: string;
-  id: number;
+  id: number | string;
   isAddProject?: boolean;
   lockButton?: boolean | null;
-  addToCart: (id: number) => void;
+  addToCart: (id: number | string) => void;
 };
 export const MenuItem = ({
   name,
