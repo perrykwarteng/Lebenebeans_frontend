@@ -4,7 +4,7 @@ import BannerImage from "../assets/images/Banner.jpg";
 export const Banner = () => {
   return (
     <div
-      className="relative bg-gray-800 rounded-xl overflow-hidden mx-8 md:mx-16"
+      className="relative bg-gray-800 rounded-xl overflow-hidden mx-8 md:mx-16 mb-10"
       style={{
         backgroundImage: `url(${BannerImage})`,
         backgroundSize: "cover",

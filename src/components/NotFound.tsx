@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { MainLayout } from "./layouts/MainLayout";
 import { Button } from "./ui/Button";
+import Background from "../assets/images/bg.jpg";
 
 export const NotFound = () => {
   const nav = useNavigate();
@@ -8,7 +9,13 @@ export const NotFound = () => {
   return (
     <>
       <MainLayout>
-        <div className="h-screen flex items-center justify-center p-5">
+        <div
+          className="h-screen flex items-center justify-center p-5"
+          style={{
+            backgroundImage: `url(${Background})`,
+            backgroundSize: "cover",
+          }}
+        >
           <div className="flex flex-col items-center justify-center">
             <h1 className="text-[100px] text-center text-primary">Oops!</h1>
             <p className="text-[20px] text-center text-secondary font-semibold">

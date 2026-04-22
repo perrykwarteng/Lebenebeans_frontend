@@ -4,7 +4,7 @@ import Logo from "../assets/images/salad.png";
 
 export const Footer = () => {
   return (
-    <footer className="bg-primary text-white mt-10 py-2">
+    <footer className="bg-primary text-white py-2">
       <div className="w-full md:px-12 py-2 flex flex-col justify-center md:flex-row items-center md:justify-between  gap-4">
         <div className="">
           <Link className="flex items-center justify-center gap-x-2" to="/">
