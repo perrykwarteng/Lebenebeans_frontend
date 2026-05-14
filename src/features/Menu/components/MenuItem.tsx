@@ -46,12 +46,12 @@ export const MenuItem = ({
       </div>
 
       <div>
-        <h2 className="font-semibold text-gray-800 text-[17px] line-clamp-2">
+        <h2 className="font-semibold text-gray-800 text-[17px] line-clamp-2 min-h-12">
           {name}
         </h2>
 
         <div className="flex items-center justify-between">
-          <p className="font-semibold text-[16px] text-primary mt-2">
+          <p className="font-bold text-[18px] text-[#d6a402] mt-2">
             GHS {price.toFixed(2)}
           </p>
 
