@@ -59,7 +59,7 @@ export const Navbar = () => {
               if (
                 path.pathname.startsWith("/cart/") ||
                 path.pathname.startsWith("/bulkOrder") ||
-                path.pathname.startsWith("/history") 
+                path.pathname.startsWith("/history")
               ) {
                 return navItem.navText === "Home";
               }

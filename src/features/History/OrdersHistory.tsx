@@ -53,14 +53,14 @@ export default function OrderHistory() {
               return (
                 <div className="" key={order.orders.id}>
                   <div className="border border-primary rounded-xl p-4 transition cursor-pointer bg-white">
-                    <div className="flex justify-between items-start mb-1">
-                      <p className="font-medium text-secondary text-[17px]">
+                    <div className="flex justify-between items-center mb-1">
+                      <p className="font-medium text-secondary text-[16px]">
                         OrderID:
                         <span className="ms-1 text-sm text-gray-500">
                           #{order.orders.orderId}
                         </span>
                       </p>
-                      <p className="text-sm font-medium text-secondary mt-0.5">
+                      <p className="text-[12px] md:text-sm font-medium text-secondary mt-0.5">
                         {formatDate(order.orders.createdAt)}
                       </p>
                     </div>
