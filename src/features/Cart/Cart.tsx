@@ -28,12 +28,13 @@ export const CartPage = () => {
   const menuDatas = menuData;
   const { item, addCart, clearCart, removeCart, increaseQty, decreaseQty } =
     useCartStore();
+  const [confirmNumber, setConfirmNumber] = useState(false);
 
   const { guest, setGuest } = useGuestStore();
   const { clearPromo } = usePromoStore();
 
   const [name, setName] = useState(guest.name);
-  const [number, setNumber] = useState(guest.phone);
+  const [number, setNumber] = useState(guest.phone ? guest.phone : "");
   const [deliveryType, setDeliveryType] = useState("");
   const [location, setLocation] = useState("");
   const [note, setNote] = useState("");
@@ -137,6 +138,10 @@ export const CartPage = () => {
       name: data.name,
       phone: data.number,
     });
+
+    if (isSuccess) {
+      setConfirmNumber(false);
+    }
 
     setName("");
     setNote("");
@@ -250,7 +255,7 @@ export const CartPage = () => {
               </div>
               <div className="my-1.5">
                 <InputField
-                  label="Phone Number (for Deliver)"
+                  label="Phone Number (for Delivery)"
                   name="number"
                   type="number"
                   placeholder="enter your number"
@@ -360,15 +365,81 @@ export const CartPage = () => {
 
               <div className="mt-4 flex items-center justify-center">
                 <Button
-                  isDisabled={isPending}
-                  text={`${isPending ? "Creating Order..." : "Proceed To Checkout"}`}
+                  text="Place Order"
                   type="submit"
-                  action={handleSubmit}
+                  action={() => {
+                    if (
+                      !name ||
+                      !number ||
+                      !item ||
+                      !deliveryType ||
+                      !totalFoodPrice ||
+                      !totalPrice
+                    ) {
+                      return toast.warning(
+                        "Fill all required fields before submiting",
+                      );
+                    }
+                    setConfirmNumber(true);
+                  }}
                 />
               </div>
             </div>
           </div>
         </div>
+
+        <Modal
+          title="Confirm Your Number"
+          isOpen={confirmNumber}
+          onClose={() => {
+            setConfirmNumber(false);
+          }}
+          size="md"
+        >
+          <div className="space-y-5">
+            {/* Message */}
+            <div className="text-center">
+              <p className="text-gray-600 text-md text-center">
+                Please confirm this phone number before proceeding to checkout.
+                <br />
+                <span className="text-sm text-red-500">
+                  If the number is wrong, you can change it before proceeding.
+                </span>
+              </p>
+
+              <input
+                className="mt-4 w-full bg-gray-100 border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none text-center rounded-2xl py-4 px-5 text-2xl font-bold tracking-wide text-gray-900 transition-all"
+                type="number"
+                value={guest.phone || number}
+                onChange={(e) => {
+                  setGuest({
+                    ...guest,
+                    phone: e.target.value,
+                  });
+
+                  setNumber(e.target.value);
+                }}
+              />
+            </div>
+
+            <div className="flex flex-col  sm:flex-row justify-end gap-3 pt-2">
+              <button
+                onClick={() => setConfirmNumber(false)}
+                className="px-5 py-3 order-2 md:order-1 rounded-xl border border-gray-300 bg-white text-gray-700 font-medium hover:bg-gray-100 transition-all duration-200"
+              >
+                No, Cancel
+              </button>
+
+              <Button
+                text={isPending ? "Creating Order..." : "Proceed To Checkout"}
+                type="submit"
+                action={handleSubmit}
+                isDisabled={isPending}
+                Stlye="order-1 md:order-2 bg-primary hover:bg-secondary text-secondary hover:text-white px-5 py-2 text-[19px] text-center rounded-xl"
+              />
+            </div>
+          </div>
+        </Modal>
 
         <Modal
           title="Add Food or Extras"
